@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body{
+    width: 1366px;
+    margin: auto;
+    font-family: 'Roboto', sans-serif;
+    --dunder-blue: #14374D;
+    --dunder-white: #FCFCFC;
+}
+
+h1 {
+    font-size: 32px;
+    margin: 0px;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 0px;
+    margin: 5px 0px 5px 0px;
+}
+
+h4 {
+    font-size: 14px;
+    margin: 0px;
+}
+
+h5{
+    font-size: 12px;
+    margin: 0px;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 768px;
+    justify-items: center;
+}
+
+.container .left-section{
+    display: grid;
+    grid-template-rows: 300px  300px 300px;
+    justify-items: center;
+ }
+
+.container .left-section img{
+   width: 70%;
+}
+
+
+.container .right-section{
+    background-color: var(--dunder-blue) ;
+    color: var(--dunder-white);
+    width: 500px;
+    display: grid;
+    grid-template-rows: 270px 350px 270px;
+}
+
+.form-container{
+    background-color: var(--dunder-white) ;
+    color: var(--dunder-blue);
+    padding: 10px 0px 10px 0px;
+    margin: 0px 20px 0px 20px;
+    align-items: center;
+}
+
+.form-container input{
+    border: 1px solid var(--dunder-blue);
+    font-size: 18px;
+    width: 90%;
+    height: 30px;
+    margin-left: 10px;
+}
+.form-container button{
+   background-color: var(--dunder-blue);
+   color: var(--dunder-white);
+   border: none;
+   font-size: 18px;
+   padding: 10px;
+ }
+
+.form-container .aider{
+   text-align: right;
+   margin: 5px 20px 5px 0px;
+}
+
+.form-container .label-aider{
+    margin-left: 10px;
+ }
