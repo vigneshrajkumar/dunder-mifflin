@@ -17,12 +17,4 @@ var userSchema = mongoose.Schema({
     // }, 
 })
 
-
-userSchema.methods.userExists = function(user){
-    this.findOne({email: user.email}, function(err, usr){
-        if (err) return console.log(err);
-        return usr.email === user.email
-    });
-};
-
 module.exports = mongoose.model("User", userSchema)
