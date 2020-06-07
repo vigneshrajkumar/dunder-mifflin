@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body{
-    width: 1366px;
+    width: 80%;
     margin: auto;
     font-family: 'Roboto', sans-serif;
     --dunder-blue: #14374D;
@@ -23,6 +23,7 @@ h3 {
     font-size: 18px;
     margin: 0px;
     margin: 5px 0px 5px 0px;
+    font-weight: normal;
 }
 
 h4 {
@@ -58,7 +59,7 @@ h5{
     color: var(--dunder-white);
     width: 500px;
     display: grid;
-    grid-template-rows: 270px 350px 270px;
+    grid-template-rows: 270px auto 220px;
 }
 
 .form-container{
@@ -91,4 +92,101 @@ h5{
 
 .form-container .label-aider{
     margin-left: 10px;
+ }
+
+
+ /* ------------------ */
+ /* Landing page styles */
+
+
+ .app{
+     display: grid;
+     grid-template-columns: 15% 85%;
+ }
+
+.grid-item{
+    display: grid;
+    max-width: 250px;
+    background-color: var(--dunder-white);
+    grid-template-rows: 210px 30px 30px;
+    align-items: center;
+    padding: 10px;
+    color: var(--dunder-blue);
+    margin: 10px;
+}
+
+.grid-item .image-box{
+    justify-self: center;
+ }
+
+ .grid-item .description-box{
+    align-self: center;
+    justify-self: center;
+ }
+
+.grid-item .price-box{
+     display: grid;
+     grid-template-columns: 50% 50%;
+     font-size: 18px;
+     border-top: 2px solid var(--dunder-blue);
+ }
+
+
+ .view-area .search-bar{
+   display: grid;
+   grid-template-columns: 40% auto 20%;
+   align-content: center;
+}
+
+
+.view-area{
+    margin: 0px 0px 0px 10px;
+}
+
+.view-area .search-bar input{
+   height: 30px;
+   width: 80%;
+   border: 2px solid var(--dunder-blue);
+ }
+
+.view-area .search-bar .links{
+   text-align: right;
+   margin: 10px 10px;
+ }
+
+.view-area .search-bar a{
+    font-size: 18px;
+    color: var(--dunder-blue);
+    text-decoration: none;
+ }
+
+  
+.view-area .title-bar{
+    border-bottom: 3px solid var(--dunder-blue);
+    font-size: 32px;
+    padding: 10px 0px;
+}
+
+.category-panel {
+    display: grid;
+    grid-template-rows: 100px 600px;
+    background-color: var(--dunder-blue);
+    color: var(--dunder-white);
+}
+
+.category-panel .logo-box{
+    justify-self: center;
+    align-self: center;
+}
+
+.category-panel .logo-box img{
+    width: 80%;
+}
+
+.category-panel .category-box{
+   font-size: 18px;
+}
+
+.category-panel .category-title{
+   margin: 10px;
  }
