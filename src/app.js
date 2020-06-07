@@ -25,6 +25,7 @@ mongoose.connect('mongodb://localhost:27017/dunder-mifflin', {useNewUrlParser: t
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 
+
 // catch 4xx and forward to error handler
 app.use(function (req, res, next) {
   next(createError(400));
@@ -37,7 +38,6 @@ app.use(function (err, req, res, next) {
     message: "Malfromed URI"
   });
 });
-
 
 
 app.listen(8000, function () {
