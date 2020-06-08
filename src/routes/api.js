@@ -24,12 +24,12 @@ router.post("/store", function (req, res, next) {
     if (err) {
       return err;
     }
-      storeObj.save((err) => {
-        if (err) {
-          return err;
+    storeObj.save((err) => {
+      if (err) {
+        return err;
       };
       return res.status(200).send({ status: "success", message: 'Store created' })
-      });
+    });
   })
 })
 
@@ -51,13 +51,12 @@ router.post("/product", function (req, res, next) {
       return err;
     }
     productObj.save((err) => {
-        if (err) {
-          return err;
+      if (err) {
+        return err;
       };
       return res.status(200).send({ status: "success", message: 'Product created' })
-      });
+    });
   })
 })
-
 
 module.exports = router;

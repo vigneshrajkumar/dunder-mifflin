@@ -10,6 +10,7 @@ import "./style.css"
 import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
 import LandingPage from "./components/LandingPage"
+import ProductPage from "./components/ProductPage"
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
        <Route path="/user/login"> <LoginPage sellerLogin={false} /> </Route>
        <Route path="/seller/register"> <RegisterPage sellerRegistration={true} /> </Route>
        <Route path="/seller/login"> <LoginPage sellerLogin={true} /> </Route>
+       
+       <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route> 
        <Route path="/"><LandingPage /></Route>
      </Switch>
    </BrowserRouter>

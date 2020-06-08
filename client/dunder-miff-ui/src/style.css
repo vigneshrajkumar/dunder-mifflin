@@ -160,13 +160,17 @@ h5{
     text-decoration: none;
  }
 
-  
 .view-area .title-bar{
     border-bottom: 3px solid var(--dunder-blue);
     font-size: 32px;
     padding: 10px 0px;
 }
 
+.view-area .product-grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+ 
 .category-panel {
     display: grid;
     grid-template-rows: 100px 600px;
@@ -189,4 +193,5 @@ h5{
 
 .category-panel .category-title{
    margin: 10px;
+   cursor: pointer;
  }

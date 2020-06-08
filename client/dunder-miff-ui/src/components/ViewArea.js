@@ -2,7 +2,12 @@ import React from "react"
 
 import GridItem from "./GridItem"
 import { Link } from "react-router-dom"
+
+import productDump from "./../dump/products"
+
 class ViewArea extends React.Component {
+
+    
     render() {
         return (
             <div className="view-area">
@@ -16,11 +21,17 @@ class ViewArea extends React.Component {
                     </div>
                 </div>
                 <div className="title-bar">
-                    <div>Popular</div>
+                    <div>{ this.props.selectedCategory.description}</div>
                 </div>
                 <div className="product-grid">
-                    <GridItem />
-                    <GridItem />
+                    {productDump.map(p => <GridItem
+                        key={p.id}
+                        brand={p.brand}
+                        description={p.description}
+                        product_image={p.product_image}
+                        price={p.price}
+                        rating={p.reviews.length}
+                    />)}
                 </div>
             </div>
         )
