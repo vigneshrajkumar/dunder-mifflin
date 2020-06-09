@@ -5,9 +5,7 @@ import { Link } from "react-router-dom"
 
 import productDump from "./../dump/products"
 
-class ViewArea extends React.Component {
-
-    
+class ViewArea extends React.Component { 
     render() {
         return (
             <div className="view-area">

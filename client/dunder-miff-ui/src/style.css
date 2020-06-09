@@ -170,6 +170,10 @@ h5{
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
+
+.view-area a{
+   text-decoration: none;
+}
  
 .category-panel {
     display: grid;
@@ -195,3 +199,100 @@ h5{
    margin: 10px;
    cursor: pointer;
  }
+
+ /* Product Page */
+
+.review{
+     background-color: var(--dunder-white);
+     max-width: 500px;
+     padding: 10px;
+ }
+
+ .review .review-title{
+    border-bottom: 2px solid var(--dunder-blue);
+    font-size: 18px;
+    padding: 5px 0px ;
+}
+
+.review .review-subtitle{
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 5px 0px ;
+}
+
+.review .review-rating{
+  justify-self: right;
+}
+
+.review .review-content{
+    text-align: justify;    
+    padding: 5px 0px;
+}
+  
+.view-area .reviews{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.view-area .review-header{
+    background-color: var(--dunder-white);
+    width: 50%;
+    margin: auto;
+}
+
+.view-area .review-header .title{
+  font-size: 24px;
+}
+
+.view-area .review-header textarea{
+    width: 90%;
+    border: 2px solid var(--dunder-blue);
+    resize: none;
+}
+
+.view-area .review-header select{
+    margin: 5px;
+}
+
+.view-area .review-header button{
+    margin: 5px;
+    background-color: var(--dunder-blue);
+    color: var(--dunder-white);
+    border: none;
+    height: 30px;
+}
+
+.view-area .product{
+    display: grid;
+    grid-template-columns: 30% auto 30%;
+    border-bottom: 3px solid var(--dunder-blue);
+    padding: 10px 0px;
+}
+
+.view-area .product .image-box{
+    justify-self: center;
+    align-self: center;
+}
+
+.view-area .product .image-box img{
+    border: 2px solid var(--dunder-blue);
+}
+
+.view-area .product .product-name{
+    font-size: 32px;
+}
+
+.view-area .product .product-brand, .view-area .product .product-cost, .view-area .product .product-rating {
+    font-size: 18px;
+    margin: 10px 0px;
+}
+
+
+.view-area .product button{
+    margin: 10px;
+    background-color: var(--dunder-blue);
+    color: var(--dunder-white);
+    border: none;
+    height: 25px;
+}
