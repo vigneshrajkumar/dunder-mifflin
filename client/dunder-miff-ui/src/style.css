@@ -288,11 +288,52 @@ h5{
     margin: 10px 0px;
 }
 
-
 .view-area .product button{
     margin: 10px;
     background-color: var(--dunder-blue);
     color: var(--dunder-white);
     border: none;
     height: 25px;
+}
+
+/* Search Result Page */
+
+.search-result{
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    max-width: 60%;
+    height: 100px;
+    border-bottom: 2px solid var(--dunder-blue);
+    margin: 10px 0px;
+    padding: 10px 0px;
+}
+
+.search-result .image-box{
+   align-self: center;
+   justify-self: center;
+}
+
+.search-result .image-box img{
+    border: 2px solid var(--dunder-blue);
+ }
+
+ .search-result .price-rating-box{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    align-items: center;
+ }
+
+
+ .search-result .description-box{
+    display: grid;
+    grid-template-rows: 30% 30% 30%;
+    align-items: center;
+}
+
+.search-result .product-name{
+   font-size: 24px;
+ }
+
+ .search-result .product-seller{
+    font-size: 14px;
 }

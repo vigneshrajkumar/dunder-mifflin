@@ -11,6 +11,7 @@ import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
 import LandingPage from "./components/LandingPage"
 import ProductPage from "./components/ProductPage"
+import SearchPage from "./components/SearchPage"
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
        <Route path="/seller/login"> <LoginPage sellerLogin={true} /> </Route>
        
        <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route> 
+       <Route path="/search"> <SearchPage /> </Route> 
        <Route path="/"><LandingPage /></Route>
      </Switch>
    </BrowserRouter>
