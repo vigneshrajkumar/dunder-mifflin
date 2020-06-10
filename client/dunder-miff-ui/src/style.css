@@ -200,6 +200,11 @@ h5{
    cursor: pointer;
  }
 
+ .category-panel .category-title a{
+    color: var(--dunder-white);
+    text-decoration: none;
+  }
+
  /* Product Page */
 
 .review{

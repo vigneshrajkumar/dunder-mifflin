@@ -1,12 +1,30 @@
 import React from "react"
 
-import { Link } from "react-router-dom"
-import logo from "./../img/dm-logo.jfif"
-import SearchResult from "./SearchResult"
 
+import logo from "./../img/dm-logo.jfif"
 import categoriesDump from "./../dump/categories"
 
-class SearchPage extends React.Component {
+import GridItem from "./GridItem"
+import { Link } from "react-router-dom"
+
+import productDump from "./../dump/products"
+
+class StorePage extends React.Component {
+
+    constructor() {
+        super()
+        this.state = {
+            selectedCategoryID: 0,
+            categories: categoriesDump
+        }
+        this.updateCategorySelection = this.updateCategorySelection.bind(this)
+    }
+
+    updateCategorySelection(newSelectionID) {
+        this.setState({
+            selectedCategoryID: newSelectionID
+        })
+    }
 
     render() {
         return (
@@ -34,17 +52,22 @@ class SearchPage extends React.Component {
                         </div>
                     </div>
                     <div className="title-bar">
-                        <div> Showing results for <span> color papers </span> </div>
+                        <div>Cloudtail Retail India</div>
                     </div>
-                    <div className="results">
-                        <SearchResult />
-                        <SearchResult />
+                    <div className="product-grid">
+                        {productDump.map(p => <GridItem
+                            key={p.id}
+                            brand={p.brand}
+                            description={p.description}
+                            product_image={p.product_image}
+                            price={p.price}
+                            rating={p.reviews.length}
+                        />)}
                     </div>
                 </div>
             </div>
         )
     }
-
 }
 
-export default SearchPage
+export default StorePage
