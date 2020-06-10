@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-
-import CategoryPanel from "./CategoryPanel"
+import logo from "./../img/dm-logo.jfif"
 import Review from "./Review"
 
 import categoriesDump from "./../dump/categories"
@@ -10,7 +9,18 @@ class ProductPage extends React.Component {
     render() {
         return (
             <div className="app">
-                <CategoryPanel categories={categoriesDump} />
+                <div className="category-panel">
+                    <div className="logo-box">
+                        <img src={logo} alt="dunder-miflin logo" />
+                    </div>
+                    <div className="category-box">
+                        {categoriesDump.map(c =>
+                            <div className="category-title" key={c.id}>
+                                <Link to={"/category/" + String(c.id) + "/products"}> {c.description} </Link>
+                            </div>
+                        )}
+                    </div>
+                </div>
                 <div className="view-area">
                     <div className="search-bar">
                         <div>
