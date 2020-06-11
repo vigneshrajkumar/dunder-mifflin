@@ -1,14 +1,14 @@
 import React from "react"
 
 import logo from "./../img/dm-logo.jfif"
-import categoriesDump from "./../dump/categories"
+import categoriesDump from "../dump/categories"
 
 import GridItem from "./GridItem"
 import { Link } from "react-router-dom"
 
-import productDump from "./../dump/products"
+import productDump from "../dump/products"
 
-class LandingPage extends React.Component {
+class ProductGridPage extends React.Component {
 
     constructor() {
         super()
@@ -61,4 +61,4 @@ class LandingPage extends React.Component {
     }
 }
 
-export default LandingPage
+export default ProductGridPage

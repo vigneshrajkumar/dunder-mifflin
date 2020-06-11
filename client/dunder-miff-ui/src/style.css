@@ -342,3 +342,54 @@ h5{
  .search-result .product-seller{
     font-size: 14px;
 }
+
+ /* Inventory Page */
+
+ .view-area .store-name{
+    font-size: 18px;
+    margin-top: 10px;
+ }
+
+
+ .view-area .add-product{
+    margin: auto;
+    background-color: var(--dunder-white);
+    padding: 10px 0px;
+    border-bottom: 2px solid var(--dunder-blue);
+}
+
+ .view-area .add-product .heading, .view-area .listed-products .heading{
+     font-size: 18px;
+     border-bottom: 2px solid var(--dunder-blue);
+     padding: 5px 0px;
+ }
+
+ .view-area .add-product-form .field{
+    width: 300px;
+ }
+
+ .view-area .add-product button{
+    margin: 10px 0px;
+    background-color: var(--dunder-blue);
+    color: var(--dunder-white);
+    border: none;
+    height: 25px;
+ }
+
+ .view-area .listed-products{
+    margin: auto;
+    background-color: var(--dunder-white);
+    padding: 10px 0px;
+    border-bottom: 2px solid var(--dunder-blue);
+}
+
+.view-area .product-list table{
+    margin: auto;
+    width: 80%;
+    text-align: left;
+}
+
+.view-area .product-list tr{
+    margin: 5px 5px;
+}
+

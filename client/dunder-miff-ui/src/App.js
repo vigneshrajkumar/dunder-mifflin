@@ -9,10 +9,14 @@ import {
 import "./style.css"
 import LoginPage from "./components/LoginPage"
 import RegisterPage from "./components/RegisterPage"
-import LandingPage from "./components/LandingPage"
+import ProductGridPage from "./components/ProductGridPage"
 import ProductPage from "./components/ProductPage"
 import SearchPage from "./components/SearchPage"
 import StorePage from "./components/StorePage"
+
+import InventoryPage from "./components/InventoryPage"
+
+
 
 
 function App() {
@@ -24,11 +28,16 @@ function App() {
         <Route path="/seller/register"> <RegisterPage sellerRegistration={true} /> </Route>
         <Route path="/seller/login"> <LoginPage sellerLogin={true} /> </Route>
 
-        <Route path="/category/:id/products"> <LandingPage productCategoryID={1} /> </Route>
+        <Route path="/inventory"> <InventoryPage/> </Route>
+      
+        <Route path="/category/:id/products"> <ProductGridPage productCategoryID={1} /> </Route>
         <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
         <Route path="/store/:id"> <StorePage /> </Route>
         <Route path="/search"> <SearchPage /> </Route>
-        <Route path="/"><LandingPage productCategoryID={null} /></Route>
+        <Route path="/"><ProductGridPage productCategoryID={null} /></Route>
+
+
+
       </Switch>
     </BrowserRouter>
   );
