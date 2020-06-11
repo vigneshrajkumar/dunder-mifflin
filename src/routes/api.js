@@ -35,12 +35,12 @@ router.post("/store", function (req, res, next) {
 })
 
 router.get("/store/:name", function (req, res, next) {
-   Store.findOne({ 'name': req.param.name }, (err, store) => {
+  Store.findOne({ 'name': req.params.name }, (err, store) => {
     if (err) {
-      return res.status(500).send({ status: "success", message: err.message});
+      return res.status(500).send({ status: "success", message: err.message });
     }
-    return res.status(500).send({ status: "success", message: store});
-    
+    return res.status(500).send({ status: "success", message: store });
+
   })
 })
 
@@ -71,11 +71,11 @@ router.post("/product", function (req, res, next) {
 })
 
 router.get("/product/:name", function (req, res, next) {
-  Product.findOne({ 'name': req.param.name }, (err, product) => {
+  Product.findOne({ 'name': req.params.name }, (err, product) => {
     if (err) {
       return err;
     }
-    return res.status(500).send({ status: "success", message: product});
+    return res.status(500).send({ status: "success", message: product });
   })
 })
 
@@ -85,7 +85,7 @@ router.get("/category/populate", function (req, res, next) {
     categories: ["Electronics", "Books"]
   });
   categories.save(err => {
-    if(err) {
+    if (err) {
       return res.status(500).send({ status: "failure", message: err.message });
     };
     return res.status(200).send({ status: "success", message: 'Categories created' })
@@ -93,11 +93,13 @@ router.get("/category/populate", function (req, res, next) {
 })
 
 router.get("/category", function (req, res, next) {
- Category.find((err, categories) => {
+  const query = Category.find();
+  query.select("categories")
+  query.exec((err, categories) => {
     if(err){
       return res.status(500).send({ status: "failure", message: err.message });
     }
-    return res.status(200).send({ status: "failure", message: categories.categories });
+    return res.status(500).send({ status: "success", message: categories });
   })
 })
 
