@@ -1,7 +1,7 @@
 import React from "react"
 
 import logo from "./../img/dm-logo.jfif"
-import categoriesDump from "../dump/categories"
+
 
 import GridItem from "./GridItem"
 import { Link } from "react-router-dom"
@@ -12,9 +12,23 @@ class ProductGridPage extends React.Component {
 
     constructor() {
         super()
+
         this.state = {
-            categories: categoriesDump
+            categories: []
         }
+
+        fetch("/api/categories")
+        .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    categories: res.message,
+                    isLoading: false
+                })
+            })
+            .catch(err => {
+                // TODO:: Reditect to 500 error
+                console.log(err)
+            })
     }
 
     render() {

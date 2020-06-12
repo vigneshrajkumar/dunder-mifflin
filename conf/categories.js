@@ -1,4 +1,4 @@
-export default [
+module.exports = [
     {
         id: 0,
         description: "Popular",
@@ -26,6 +26,10 @@ export default [
     {
         id: 6,
         description: "Desk Organizers",
+    },
+    {
+        id: 7,
+        description: "Offers",
     }
 ]
 

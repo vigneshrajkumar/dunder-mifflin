@@ -35,70 +35,71 @@ router.post("/store", function (req, res, next) {
 })
 
 router.get("/store/:name", function (req, res, next) {
-   Store.findOne({ 'name': req.param.name }, (err, store) => {
+  Store.findOne({ 'name': req.param.name }, (err, store) => {
     if (err) {
-      return res.status(500).send({ status: "success", message: err.message});
+      return res.status(500).send({ status: "error", message: err.message });
     }
-    return res.status(500).send({ status: "success", message: store});
-    
+    return res.status(500).send({ status: "success", message: store });
+
   })
 })
 
-router.post("/product", function (req, res, next) {
+router.post("/stores/:sid/products/:pid", function (req, res, next) {
+
+
+  storeID = "-1" /* TODO: Get StoreID froms session information */
+
   const productObj = new Product({
-    id: uuidv4(),
+    _id: uuidv4(),
     name: req.body.name,
     brand: req.body.brand,
-    product_image: req.body.product_image,
+    product_image: "req.body.product_image",
     price: req.body.price,
-    description: req.body.description,
+    // description: "req.body.description",
     quantity: req.body.quantity,
     categories: req.body.categories,
-    reviews: req.body.reviews
+    reviews: req.body.reviews,
+    storeID: -2
   })
 
-  Product.findOne({ 'name': productObj.name }, (err, product) => {
-    if (err) {
-      return err;
-    }
-    productObj.save((err) => {
-      if (err) {
-        return res.status(500).send({ status: "failure", message: err.message });
-      };
-      return res.status(200).send({ status: "success", message: 'Product created' })
-    });
+  productObj.save(function (err) {
+    if (err) return res.status(500).send({ status: "error", message: err.message });
+  }).then(() => {
+    return res.status(201).send({ status: "success", product: productObj });
+  }).catch(err => {
+    console.log(err)
   })
-})
+});
+
+
 
 router.get("/product/:name", function (req, res, next) {
   Product.findOne({ 'name': req.param.name }, (err, product) => {
     if (err) {
       return err;
     }
-    return res.status(500).send({ status: "success", message: product});
+    return res.status(500).send({ status: "success", message: product });
   })
 })
 
 
-router.get("/category/populate", function (req, res, next) {
-  const categories = new Category({
-    categories: ["Electronics", "Books"]
-  });
-  categories.save(err => {
-    if(err) {
-      return res.status(500).send({ status: "failure", message: err.message });
-    };
-    return res.status(200).send({ status: "success", message: 'Categories created' })
-  });
-})
+// router.get("/category/populate", function (req, res, next) {
+//   const categories = new Category({
+//     categories: ["Electronics", "Books"]
+//   });
+//   categories.save(err => {
+//     if (err) {
+//       return res.status(500).send({ status: "failure", message: err.message });
+//     };
+//     return res.status(200).send({ status: "success", message: 'Categories created' })
+//   });
+// })
 
-router.get("/category", function (req, res, next) {
- Category.find((err, categories) => {
-    if(err){
-      return res.status(500).send({ status: "failure", message: err.message });
-    }
-    return res.status(200).send({ status: "failure", message: categories.categories });
-  })
+router.get("/categories", async function (req, res) {
+  Category.find({}).exec((err, cats) => {
+    if (err) res.status(500).send({ status: "failure", message: err.message });
+    return res.status(200).send({ status: "success", message: cats });
+  });
 })
 
 module.exports = router;

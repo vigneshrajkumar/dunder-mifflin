@@ -4,9 +4,28 @@ import { Link } from "react-router-dom"
 import logo from "./../img/dm-logo.jfif"
 import SearchResult from "./SearchResult"
 
-import categoriesDump from "./../dump/categories"
-
 class SearchPage extends React.Component {
+
+    constructor() {
+        super()
+
+        this.state = {
+            categories: []
+        }
+
+        fetch("/api/categories")
+        .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    categories: res.message,
+                    isLoading: false
+                })
+            })
+            .catch(err => {
+                // TODO:: Reditect to 500 error
+                console.log(err)
+            })
+    }
 
     render() {
         return (
@@ -16,7 +35,7 @@ class SearchPage extends React.Component {
                         <img src={logo} alt="dunder-miflin logo" />
                     </div>
                     <div className="category-box">
-                        {categoriesDump.map(c =>
+                        {this.state.categories.map(c =>
                             <div className="category-title" key={c.id}>
                                 <Link to={"/category/" + String(c.id) + "/products"}> {c.description} </Link>
                             </div>

@@ -17,8 +17,6 @@ import StorePage from "./components/StorePage"
 import InventoryPage from "./components/InventoryPage"
 
 
-
-
 function App() {
   return (
     <BrowserRouter>
@@ -28,8 +26,8 @@ function App() {
         <Route path="/seller/register"> <RegisterPage sellerRegistration={true} /> </Route>
         <Route path="/seller/login"> <LoginPage sellerLogin={true} /> </Route>
 
-        <Route path="/inventory"> <InventoryPage/> </Route>
-      
+        <Route path="/inventory"> <InventoryPage /> </Route>
+
         <Route path="/category/:id/products"> <ProductGridPage productCategoryID={1} /> </Route>
         <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
         <Route path="/store/:id"> <StorePage /> </Route>
