@@ -44,10 +44,11 @@ router.get("/store/:name", function (req, res, next) {
   })
 })
 
-router.post("/stores/:sid/products/:pid", function (req, res, next) {
-
+router.post("/stores/:sid/products/:pid", async function (req, res, next) {
 
   storeID = "-1" /* TODO: Get StoreID froms session information */
+
+  // console.log(req.body)
 
   const productObj = new Product({
     _id: uuidv4(),
@@ -55,23 +56,30 @@ router.post("/stores/:sid/products/:pid", function (req, res, next) {
     brand: req.body.brand,
     product_image: "req.body.product_image",
     price: req.body.price,
-    // description: "req.body.description",
+    description: "req.body.description",
     quantity: req.body.quantity,
     categories: req.body.categories,
     reviews: req.body.reviews,
-    storeID: -2
-  })
+    storeID: storeID
+  });
 
-  productObj.save(function (err) {
-    if (err) return res.status(500).send({ status: "error", message: err.message });
-  }).then(() => {
-    return res.status(201).send({ status: "success", product: productObj });
-  }).catch(err => {
-    console.log(err)
-  })
+  try {
+    const resp = await productObj.save()
+    return res.status(201).send({ status: "success", product: resp });
+  } catch (err) {
+    return res.status(500).send({ status: "error", message: err.message });
+  }
+
 });
 
-
+router.get("/stores/:id/products", async function (req, res) {
+  try {
+    const resp = await Product.find({ 'storeID': req.params.id })
+    return res.status(200).send({ status: "success", products: resp });
+  } catch (err) {
+    return res.status(500).send({ status: "error", message: err.message });
+  }
+})
 
 router.get("/product/:name", function (req, res, next) {
   Product.findOne({ 'name': req.params.name }, (err, product) => {

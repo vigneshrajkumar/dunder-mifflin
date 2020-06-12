@@ -8,13 +8,13 @@ class ProductPage extends React.Component {
 
     constructor() {
         super()
-
         this.state = {
             categories: []
         }
-
+    }
+    componentDidMount() {
         fetch("/api/categories")
-        .then(res => res.json())
+            .then(res => res.json())
             .then(res => {
                 this.setState({
                     categories: res.message,
