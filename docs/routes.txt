@@ -1,0 +1,4 @@
+
+POST /stores/:sid/products/:pid #adds a new product to the store
+GET /categories/:cid # gets products of the given category
+GET /stores/:id/products/:pid # opens a particular product

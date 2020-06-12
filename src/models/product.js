@@ -9,6 +9,7 @@ const reviewSchema = mongoose.Schema({
 
 const productSchema = mongoose.Schema({
     _id: { type: String, required: true },
+    name: {type: String, required: true},
     brand: { type: String, required: true },
     product_image: { type: String, required: true },
     price: { type: Number, required: true },
