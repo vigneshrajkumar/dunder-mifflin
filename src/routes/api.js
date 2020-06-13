@@ -91,7 +91,12 @@ router.get("/product/:name", function (req, res, next) {
 })
 
 
-
+router.get("/categories/:cid/products", async function (req, res) {
+  Product.find({ categories: { $in: [req.params.cid] } }).exec((err, products) => {
+    if (err) res.status(500).send({ status: "failure", message: err.message });
+    return res.status(200).send({ status: "success", message: products });
+  });
+})
 
 router.get("/categories", async function (req, res) {
   Category.find({}).exec((err, cats) => {

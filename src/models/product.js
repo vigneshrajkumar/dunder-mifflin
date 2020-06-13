@@ -4,7 +4,8 @@ const reviewSchema = mongoose.Schema({
     _id: { type: String, required: true },
     review_by: { type: String, required: true },
     content: { type: String, required: true },
-    created_at: { type: String, required: true }
+    rating: { type: Number, required: true },
+    createdAt: { type: String, required: true }
 })
 
 const productSchema = mongoose.Schema({

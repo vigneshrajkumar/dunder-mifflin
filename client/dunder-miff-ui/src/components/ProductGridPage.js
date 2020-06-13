@@ -2,18 +2,16 @@ import React from "react"
 
 import logo from "./../img/dm-logo.jfif"
 
-
 import GridItem from "./GridItem"
 import { Link } from "react-router-dom"
-
-import productDump from "../dump/products"
 
 class ProductGridPage extends React.Component {
 
     constructor() {
         super()
         this.state = {
-            categories: []
+            categories: [],
+            products: []
         }
     }
     componentDidMount() {
@@ -29,6 +27,21 @@ class ProductGridPage extends React.Component {
                 // TODO:: Reditect to 500 error
                 console.log(err)
             })
+
+        //TODO: To fetch current category from URL and make the appropriate request
+        fetch("/api/categories/1/products")
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    products: res.message,
+                    isLoading: false
+                })
+            })
+            .catch(err => {
+                // TODO:: Reditect to 500 error
+                console.log(err)
+            })
+
     }
 
     render() {
@@ -60,13 +73,9 @@ class ProductGridPage extends React.Component {
                         <div>to be updated</div>
                     </div>
                     <div className="product-grid">
-                        {productDump.map(p => <GridItem
-                            key={p.id}
-                            brand={p.brand}
-                            description={p.description}
-                            product_image={p.product_image}
-                            price={p.price}
-                            rating={p.reviews.length}
+                        {this.state.products.map(p => <GridItem
+                            key={p._id}
+                            product={p}
                         />)}
                     </div>
                 </div>

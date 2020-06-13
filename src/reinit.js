@@ -2,6 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 const db = require("./../conf/db")
 const baseCollections = require("./../conf/collections")
 const categories = require("./../conf/categories")
+const products = require("./../dump/products")
 const uri = require("./../conf/uriBuilder")
 
 console.log("> Reiniting DB");
@@ -21,6 +22,7 @@ console.log("> Reiniting DB");
             }
         });
         await client.db(db.name).collection('categories').insertMany(categories);
+        await client.db(db.name).collection('products').insertMany(products);
     } catch (err) {
         console.log(err)
     }
