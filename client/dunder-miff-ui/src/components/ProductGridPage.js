@@ -41,7 +41,6 @@ class ProductGridPage extends React.Component {
                 // TODO:: Reditect to 500 error
                 console.log(err)
             })
-
     }
 
     render() {

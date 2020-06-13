@@ -7,13 +7,14 @@ import logo from "./../img/dm-logo.jfif"
 import GridItem from "./GridItem"
 import { Link } from "react-router-dom"
 
-import productDump from "./../dump/products"
+// import this.state.products from "./../dump/products"
 
 class StorePage extends React.Component {
 
     constructor() {
         super()
         this.state = {
+            products: [],
             categories: []
         }
     }
@@ -23,6 +24,21 @@ class StorePage extends React.Component {
             .then(res => {
                 this.setState({
                     categories: res.message,
+                    isLoading: false
+                })
+            })
+            .catch(err => {
+                // TODO:: Reditect to 500 error
+                console.log(err)
+            })
+
+
+        //TODO: To fetch current category from URL and make the appropriate request
+        fetch("/api/categories/1/products")
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    products: res.message,
                     isLoading: false
                 })
             })
@@ -62,7 +78,7 @@ class StorePage extends React.Component {
                         <div>Cloudtail Retail India</div>
                     </div>
                     <div className="product-grid">
-                        {productDump.map(p => <GridItem
+                        {this.state.products.map(p => <GridItem
                             key={p.id}
                             brand={p.brand}
                             description={p.description}

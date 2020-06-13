@@ -30,14 +30,10 @@ function App() {
 
         <Route path="/category/:pid/products" children={<ProductGridPage />}/>
         
-
         <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
         <Route path="/store/:id"> <StorePage /> </Route>
         <Route path="/search"> <SearchPage /> </Route>
         <Route path="/"><ProductGridPage productCategoryID={null} /></Route>
-
-
-
       </Switch>
     </BrowserRouter>
   );
