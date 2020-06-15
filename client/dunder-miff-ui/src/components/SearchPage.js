@@ -9,8 +9,11 @@ class SearchPage extends React.Component {
     constructor() {
         super()
         this.state = {
-            categories: []
+            categories: [],
+            searchTerm: ""
         }
+        this.handleSearch = this.handleSearch.bind(this)
+        this.handleSearchTermChange = this.handleSearchTermChange.bind(this)
     }
     componentDidMount() {
         fetch("/api/categories")
@@ -26,6 +29,17 @@ class SearchPage extends React.Component {
                 console.log(err)
             })
     }
+
+    handleSearch(event){
+        console.log("search with ", this.state.searchTerm)
+        event.preventDefault();
+    }
+
+    handleSearchTermChange(event){
+        this.setState({searchTerm: event.target.value})
+    }
+
+
     render() {
         return (
             <div className="app">
@@ -36,7 +50,7 @@ class SearchPage extends React.Component {
                     <div className="category-box">
                         {this.state.categories.map(c =>
                             <div className="category-title" key={c.id}>
-                                <Link to={"/category/" + String(c.id) + "/products"}> {c.description} </Link>
+                                <Link to={"/categories/" + String(c.id) + "/products"}> {c.description} </Link>
                             </div>
                         )}
                     </div>
@@ -44,7 +58,9 @@ class SearchPage extends React.Component {
                 <div className="view-area">
                     <div className="search-bar">
                         <div>
-                            <input type="input" placeholder="Search"></input>
+                            <form onSubmit={this.handleSearch}>
+                                <input type="input" name="search" placeholder="Search" onChange={this.handleSearchTermChange}></input>
+                            </form>
                         </div>
                         <div></div>
                         <div className="links">

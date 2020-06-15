@@ -3,7 +3,8 @@ import React from 'react';
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom"
 
 import "./style.css"
@@ -28,12 +29,13 @@ function App() {
 
         <Route path="/inventory"> <InventoryPage /> </Route>
 
-        <Route path="/category/:pid/products" children={<ProductGridPage />}/>
-        
+        <Route path="/categories/:cid/products" children={<ProductGridPage />} />
+
         <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
         <Route path="/store/:id"> <StorePage /> </Route>
         <Route path="/search"> <SearchPage /> </Route>
-        <Route path="/"><ProductGridPage productCategoryID={null} /></Route>
+        <Route path="/">   <Redirect to={{ pathname: "/categories/0/products" }} /> </Route>
+
       </Switch>
     </BrowserRouter>
   );
