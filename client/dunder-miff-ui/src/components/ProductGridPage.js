@@ -11,7 +11,6 @@ function ProductGridPage() {
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([])
     const { cid } = useParams();
-    console.log("cid: ", cid)
 
     useEffect(() => {
         fetch("/api/categories")

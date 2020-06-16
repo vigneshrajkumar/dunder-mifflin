@@ -1,47 +1,77 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { Link } from "react-router-dom"
 
 import logo from "./../img/dm-logo.jfif"
 
-class LoginPage extends React.Component {
-    render() {
-        return (
-            <div className="container">
-                <div className="left-section">
-                    <div></div>
-                    <div>
-                        <center> <img src={logo} alt="dunder mifflin logo"></img></center>
-                    </div>
-                    <div> <p>This site is a work of fiction, all trademarks belongs to the respective owners</p> </div>
-                </div>
 
-                <div className="right-section">
-                    <div></div>
-                    <div className="form-container">
-                        <form>
-                            {this.props.sellerRegistration ?
-                                <h2><center>Seller Registration</center></h2> :
-                                <h2><center>Customer Registration</center></h2>
-                            }
-                            <div className="label-aider"><h3>Email:</h3></div>
-                            <div><input input="text" placeholder="michael@dm.com" name="email" /></div>
-                            <br />
-                            <div className="label-aider"><h3>Password:</h3></div>
-                            <div><input input="password" placeholder="********" name="password" /></div>
-                            <br />
-                            <div className="label-aider"><h3>Repeat Password:</h3></div>
-                            <div><input input="password" placeholder="********" name="repassword" /></div>
-                            <div className="aider"><Link to="/seller/login">already have an account?</Link></div>
-                            <div className="aider"><button input="submit"> Register </button></div>
-                            <div className="aider"><Link to="/">go back</Link></div>
-                        </form>
-                    </div>
-                    <div></div>
+function RegisterPage(props) {
 
+    const [loginDetails, setLoginDetails] = useState({})
+
+    function handleChange(e) {
+        const { name, value } = e.target
+        setLoginDetails((oldState) => ({
+            ...oldState,
+            [name]: value
+        }))
+    }
+
+    function handleSumbit(e) {
+        e.preventDefault()
+        console.log("submitting with state: ", loginDetails)
+
+        fetch("/auth/register", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(loginDetails)
+        })
+            .then(res => res.json())
+            .then(res => console.log(res))
+    }
+
+    return (
+        <div className="login-page">
+            <div>
+                <div className="image-box">
+                    <img src={logo} alt="dunder miffln logo" />
                 </div>
             </div>
-        )
-    }
+            <div className="right">
+
+                <div className="login-box">
+                    <form onSubmit={handleSumbit}>
+                        <div className="heading"> {props.sellerRegistration ? "Register Seller Account" : "Customer Seller Account"} </div>
+
+                        <div className="input-group">
+                            <div className="label"> Email: </div>
+                            <div className="input-element"> <input type="email" name="email" onChange={handleChange} /> </div>
+                        </div>
+
+                        <div className="input-group">
+                            <div className="label"> Password: </div>
+                            <div className="input-element"> <input type="password" name="password" onChange={handleChange} /> </div>
+                        </div>
+
+                        <div className="input-group">
+                            <div className="label"> Repeat Password: </div>
+                            <div className="input-element"> <input type="password" name="repassword" onChange={handleChange} /> </div>
+                        </div>
+
+                        { props.sellerRegistration ? 
+                            <div className="input-group">
+                                <div className="label"> Store Name: </div>
+                                <div className="input-element"> <input type="input" name="storeName" onChange={handleChange} /> </div>
+                            </div> : "" }
+
+                        <div className="submit-button"> <button>Register</button> </div>
+
+                        <div className="link"> <Link to="/">go back</Link> </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    )
 }
-export default LoginPage
+export default RegisterPage
