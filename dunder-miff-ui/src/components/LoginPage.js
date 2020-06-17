@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 import logo from "./../img/dm-logo.jfif"
 
+import "./../styles/loginPage.css"
 
 function LoginPage(props) {
 
@@ -31,7 +32,7 @@ function LoginPage(props) {
 
     return (
         <div className="login-page">
-            <div>
+            <div className="left">
                 <div className="image-box">
                     <img src={logo} alt="dunder miffln logo" />
                 </div>

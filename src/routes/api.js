@@ -105,16 +105,14 @@ router.get("/categories", async function (req, res) {
   });
 })
 
-// router.get("/category/populate", function (req, res, next) {
-//   const categories = new Category({
-//     categories: ["Electronics", "Books"]
-//   });
-//   categories.save(err => {
-//     if (err) {
-//       return res.status(500).send({ status: "failure", message: err.message });
-//     };
-//     return res.status(200).send({ status: "success", message: 'Categories created' })
-//   });
-// })
+
+router.get("/search", async (req, res) => {
+  console.log(req.query.key)
+  Product.find({ "name": {"$regex": req.query.key, "$options": "i"} }).exec((err, products) => {
+    if (err) res.status(500).send({ status: "failure", message: err.message });
+    console.log(products)
+    return res.status(200).send({ status: "success", message: products });
+  })
+})
 
 module.exports = router;

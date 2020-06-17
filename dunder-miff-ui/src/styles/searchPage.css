@@ -1,0 +1,11 @@
+
+.search-key{
+   font-style: italic;
+   color: black;
+}
+
+.results .no-results{
+   text-align: center;
+   margin: 1em 0;
+   font-style: italic;
+ }
