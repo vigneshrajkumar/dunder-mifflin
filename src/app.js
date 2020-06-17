@@ -40,7 +40,8 @@ app.use(function (err, req, res, next) {
   });
 });
 
-
-app.listen(8000, function () {
-  console.log('listening on port 8000.');
-});
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);
