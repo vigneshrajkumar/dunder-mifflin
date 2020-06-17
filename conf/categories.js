@@ -1,34 +1,34 @@
 module.exports = [
     {
-        id: 0,
+        id: "0",
         description: "Popular",
     },
     {
-        id: 1,
+        id: "1",
         description: "Pens and Stationery",
     },
     {
-        id: 2,
+        id: "2",
         description: "Art Supplies",
     },
     {
-        id: 3,
+        id: "3",
         description: "Notebooks",
     },
     {
-        id: 4,
+        id: "4",
         description: "Electronics",
     },
     {
-        id: 5,
+        id: "5",
         description: "Files and Folders",
     },
     {
-        id: 6,
+        id: "6",
         description: "Desk Organizers",
     },
     {
-        id: 7,
+        id: "7",
         description: "Offers",
     }
 ]

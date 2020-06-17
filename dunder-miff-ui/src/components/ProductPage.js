@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import logo from "./../img/dm-logo.jfif"
 import Review from "./Review"
+import SearchBar from "./SearchBar"
 
 
 class ProductPage extends React.Component {
@@ -43,15 +44,7 @@ class ProductPage extends React.Component {
                     </div>
                 </div>
                 <div className="view-area">
-                    <div className="search-bar">
-                        <div>
-                            <input type="input" placeholder="Search"></input>
-                        </div>
-                        <div></div>
-                        <div className="links">
-                            <Link to="/user/login"> Login </Link>
-                        </div>
-                    </div>
+                <SearchBar />
                     <div className="title-bar">
                         <div> WS Retail </div>
                     </div>

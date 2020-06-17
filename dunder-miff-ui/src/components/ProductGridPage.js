@@ -1,7 +1,7 @@
 import React from "react"
 
 import logo from "./../img/dm-logo.jfif"
-
+import SearchBar from "./SearchBar"
 import { useState, useEffect } from "react"
 
 import GridItem from "./GridItem"
@@ -44,17 +44,9 @@ function ProductGridPage() {
                 </div>
             </div>
             <div className="view-area">
-                <div className="search-bar">
-                    <div>
-                        <input type="input" placeholder="Search"></input>
-                    </div>
-                    <div></div>
-                    <div className="links">
-                        <Link to="/user/login"> Login </Link>
-                    </div>
-                </div>
+                <SearchBar />
                 <div className="title-bar">
-                    <div>to be updated</div>
+                    <div>category: {cid}</div>
                 </div>
                 <div className="product-grid">
                     {products.map(p => <GridItem
