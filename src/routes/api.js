@@ -105,10 +105,14 @@ router.get("/categories", async function (req, res) {
   });
 })
 
+router.post("/stores/:sid/products/:pid/reviews", function (req, res, next) {
+  console.log(req.body)
+})
+
 
 router.get("/search", async (req, res) => {
   console.log(req.query.key)
-  Product.find({ "name": {"$regex": req.query.key, "$options": "i"} }).exec((err, products) => {
+  Product.find({ "name": { "$regex": req.query.key, "$options": "i" } }).exec((err, products) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
     console.log(products)
     return res.status(200).send({ status: "success", message: products });
