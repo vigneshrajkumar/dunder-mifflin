@@ -21,6 +21,7 @@ console.log("> Reiniting DB");
                 }
             }
         });
+
         await client.db(db.name).collection('categories').insertMany(categories);
         await client.db(db.name).collection('products').insertMany(products);
     } catch (err) {

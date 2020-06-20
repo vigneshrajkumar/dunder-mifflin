@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import logo from "./../img/dm-logo.jfif"
 import Review from "./Review"
 import SearchBar from "./SearchBar"
 
 function ProductPage() {
+
+    let { sid, pid } = useParams();
+    const [product, setProduct] = useState({})
+
+    useEffect(() => {
+        fetch("/api/stores/" + sid + "/products/" + pid)
+            .then(res => res.json())
+            .then(res => setProduct(res.product))
+
+    }, [sid, pid])
 
     const [categories, setCategories] = useState([]);
     useEffect(() => {
@@ -15,7 +25,7 @@ function ProductPage() {
                 // TODO:: Reditect to 500 error
                 console.log(err)
             })
-    }, [])
+    }, [pid])
 
 
     const [reviewInfo, setReviewInfo] = useState({});
@@ -52,7 +62,7 @@ function ProductPage() {
             <div className="view-area">
                 <SearchBar />
                 <div className="title-bar">
-                    <div> WS Retail </div>
+                    <div>{sid}  </div>
                 </div>
                 <div className="product">
                     <div className="image-box">
@@ -60,16 +70,16 @@ function ProductPage() {
                     </div>
                     <div>
                         <div className="product-name">
-                            Motor Oil
-                            </div>
+                            {product.name}
+                        </div>
                         <div className="product-brand">
-                            Castrol
-                            </div>
+                            {product.brand}
+                        </div>
                         <div className="product-cost">
-                            ₹ 500
-                            </div>
+                            ₹  {product.price}
+                        </div>
                         <div className="product-rating">
-                            1/5
+                            -1/5
                             </div>
                         <div className="product-buttons">
                             <button> Buy Now </button>

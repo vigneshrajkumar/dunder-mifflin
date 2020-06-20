@@ -72,6 +72,15 @@ router.post("/stores/:sid/products/:pid", async function (req, res, next) {
 
 });
 
+router.get("/stores/:sid/products/:pid", async function (req, res) {
+  try {
+    const resp = await Product.findOne({ 'storeID': req.params.sid, '_id': req.params.pid })
+    return res.status(200).send({ status: "success", product: resp });
+  } catch (err) {
+    return res.status(500).send({ status: "error", message: err.message });
+  }
+})
+
 router.get("/stores/:id/products", async function (req, res) {
   try {
     const resp = await Product.find({ 'storeID': req.params.id })
@@ -92,6 +101,7 @@ router.get("/product/:name", function (req, res, next) {
 
 
 router.get("/categories/:cid/products", async function (req, res) {
+
   Product.find({ categories: { $in: [req.params.cid] } }).exec((err, products) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
     return res.status(200).send({ status: "success", message: products });
@@ -102,6 +112,14 @@ router.get("/categories", async function (req, res) {
   Category.find({}).exec((err, cats) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
     return res.status(200).send({ status: "success", message: cats });
+  });
+})
+
+
+router.get("/categories/:cid", async function (req, res) {
+  Category.findOne({ id: req.params.cid }).exec((err, cat) => {
+    if (err) res.status(500).send({ status: "failure", message: err.message });
+    return res.status(200).send({ status: "success", message: cat });
   });
 })
 

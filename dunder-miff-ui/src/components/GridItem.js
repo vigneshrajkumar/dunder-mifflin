@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 function GridItem(props) {
     return (
-        <Link to="/store/1/product/6">
+        <Link to={"/store/"+ props.product.storeID +"/product/" + props.product._id}>
             <div className="grid-item">
                 <div className="image-box">
                     <img src={props.product.product_image} alt="product-thumbnail" />

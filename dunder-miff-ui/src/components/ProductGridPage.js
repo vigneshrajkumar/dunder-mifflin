@@ -7,8 +7,10 @@ import { useState, useEffect } from "react"
 import GridItem from "./GridItem"
 import { Link, useParams } from "react-router-dom"
 
+
 function ProductGridPage() {
     const [categories, setCategories] = useState([]);
+    const [currentCategory, setCurrentCategory] = useState({})
     const [products, setProducts] = useState([])
     const { cid } = useParams();
 
@@ -20,6 +22,7 @@ function ProductGridPage() {
                 // TODO:: Reditect to 500 error
                 console.log(err)
             })
+
         fetch("/api/categories/" + cid + "/products")
             .then(res => res.json())
             .then(res => { setProducts(res.message) })
@@ -27,7 +30,17 @@ function ProductGridPage() {
                 // TODO:: Reditect to 500 error
                 console.log(err)
             })
+
+        fetch("/api/categories/" + cid)
+            .then(res => res.json())
+            .then(res => { setCurrentCategory(res.message) })
+            .catch(err => {
+                // TODO:: Reditect to 500 error
+                console.log(err)
+            })
     }, [cid])
+
+
 
     return (
         <div className="app">
@@ -46,7 +59,7 @@ function ProductGridPage() {
             <div className="view-area">
                 <SearchBar />
                 <div className="title-bar">
-                    <div>category: {cid}</div>
+                    <div> {currentCategory.description} </div>
                 </div>
                 <div className="product-grid">
                     {products.map(p => <GridItem
