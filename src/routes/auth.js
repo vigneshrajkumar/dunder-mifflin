@@ -1,5 +1,4 @@
 var express = require('express');
-var passport = require('passport')
 var router = express.Router();
 var { v4: uuidv4 } = require('uuid');
 var User = require('./../models/user')
@@ -25,18 +24,29 @@ router.post('/login', function (req, res, next) {
             if (err) {
                 return err;
             }
+            res.cookie('dm-auth', sessionKey, { expire: 360000 + Date.now() })
             return res.json({ status: "success", sessionKey: sessionKey });
         })
         // its not write to keep a return stmt here; you'd be rewriting headers; callbacks on completion, unwinds the stack
     })
 });
 
+
+/* get /user returns the current signed user info */
+router.get('/user', async function (req, res) {
+    let err, usr = await User.findOne({ 'sessionKey': req.cookies['dm-auth'] }, { 'email': true })
+    if (err) res.status(500).send({ status: "failure", message: err.message });
+    return res.status(200).send({ status: "success", message: usr });
+});
+
+
 /* GET /logout clears the session */
-router.get('/logout', function (req, res, next) {
-    User.update({ 'sessionKey': req.body.sessionKey }, { 'sessionKey': null }, function (err, usr) {
+router.get('/logout', function (req, res) {
+    User.updateOne({ 'sessionKey': req.body.sessionKey }, { 'sessionKey': null }, function (err, usr) {
         if (err) {
             return err;
         }
+        res.cookie('dm-auth', "", { expire: Date.now() });
         return res.json({ status: "success" });
     })
 });

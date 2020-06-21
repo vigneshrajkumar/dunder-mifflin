@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 
 import logo from "./../img/dm-logo.jfif"
 
+import "./../styles/loginPage.css"
+
 
 function RegisterPage(props) {
 
@@ -32,7 +34,7 @@ function RegisterPage(props) {
 
     return (
         <div className="login-page">
-            <div>
+            <div className="left">
                 <div className="image-box">
                     <img src={logo} alt="dunder miffln logo" />
                 </div>
@@ -58,11 +60,11 @@ function RegisterPage(props) {
                             <div className="input-element"> <input type="password" name="repassword" onChange={handleChange} /> </div>
                         </div>
 
-                        { props.sellerRegistration ? 
+                        {props.sellerRegistration ?
                             <div className="input-group">
                                 <div className="label"> Store Name: </div>
                                 <div className="input-element"> <input type="input" name="storeName" onChange={handleChange} /> </div>
-                            </div> : "" }
+                            </div> : ""}
 
                         <div className="submit-button"> <button>Register</button> </div>
 

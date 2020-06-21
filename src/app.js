@@ -11,13 +11,12 @@ var authRouter = require('./routes/auth');
 
 var app = express();
 
-app.use(express.static('client'))
+app.use(express.static(__dirname +'./../dunder-miff-ui/build'))
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost:27017/dunder-mifflin',
  {useNewUrlParser: true, useUnifiedTopology: true})

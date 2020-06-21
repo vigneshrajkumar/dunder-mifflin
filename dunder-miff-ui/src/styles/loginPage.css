@@ -53,6 +53,8 @@
 }
 
 .login-page{
+    width: 60%;
+    margin: auto;
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;

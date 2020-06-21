@@ -78,13 +78,12 @@ body{
 }
 
 .category-panel .logo-box{
-    justify-self: center;
     align-self: center;
+    text-align: center;
 }
 
 .category-panel .logo-box img{
-    width: 70%;
-    margin: auto;
+    width: 150px;
 }
 
 .category-panel .category-box{

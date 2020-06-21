@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import logo from "./../img/dm-logo.jfif"
 
@@ -18,6 +18,9 @@ function LoginPage(props) {
         }))
     }
 
+    let history = useHistory()
+
+
     function handleSumbit(e) {
         e.preventDefault()
 
@@ -26,8 +29,15 @@ function LoginPage(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginDetails)
         })
-        .then(res => res.json())
-        .then(res => console.log(res))
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === "success") {
+                    history.push("/categories/0/products")
+                } else {
+                    // TODO:: notify user
+                    console.log("invalid credentails")
+                }
+            })
     }
 
     return (
