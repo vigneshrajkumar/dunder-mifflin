@@ -1,8 +1,10 @@
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
+const db = require("./../conf/db")
+const uri = require("./../conf/uriBuilder")
 
 var mongoose = require('mongoose');
 
@@ -18,8 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-mongoose.connect('mongodb://localhost:27017/dunder-mifflin',
- {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(uri.getConnectionString(db), {useNewUrlParser: true, useUnifiedTopology: true})
 .catch(error => handleError(error));
 
 app.use('/auth', authRouter);

@@ -5,24 +5,15 @@ import SearchBar from "./SearchBar"
 import { useState, useEffect } from "react"
 
 import GridItem from "./GridItem"
-import { Link, useParams } from "react-router-dom"
-
+import { useParams } from "react-router-dom"
+import Categories from "./Categories"
 
 function ProductGridPage() {
-    const [categories, setCategories] = useState([]);
     const [currentCategory, setCurrentCategory] = useState({})
     const [products, setProducts] = useState([])
     const { cid } = useParams();
 
     useEffect(() => {
-        fetch("/api/categories")
-            .then(res => res.json())
-            .then(res => { setCategories(res.message) })
-            .catch(err => {
-                // TODO:: Reditect to 500 error
-                console.log(err)
-            })
-
         fetch("/api/categories/" + cid + "/products")
             .then(res => res.json())
             .then(res => { setProducts(res.message) })
@@ -40,8 +31,6 @@ function ProductGridPage() {
             })
     }, [cid])
 
-
-
     return (
         <div className="app">
             <div className="category-panel">
@@ -49,11 +38,7 @@ function ProductGridPage() {
                     <img src={logo} alt="dunder-miflin logo" />
                 </div>
                 <div className="category-box">
-                    {categories.map(c =>
-                        <div className="category-title" key={c.id}>
-                            <Link to={"/categories/" + String(c.id) + "/products"}> {c.description} </Link>
-                        </div>
-                    )}
+                    <Categories />
                 </div>
             </div>
             <div className="view-area">

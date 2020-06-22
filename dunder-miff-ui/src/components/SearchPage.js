@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 
-import { Link, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import logo from "./../img/dm-logo.jfif"
 import SearchResult from "./SearchResult"
 import SearchBar from "./SearchBar"
-
+import Categories from "./Categories"
 import "./../styles/searchPage.css"
 
 function SearchPage() {
@@ -13,17 +13,6 @@ function SearchPage() {
         return new URLSearchParams(useLocation().search)
     }
     let query = useQuery()
-
-    const [categories, setCategories] = useState([]);
-    useEffect(() => {
-        fetch("/api/categories")
-            .then(res => res.json())
-            .then(res => { setCategories(res.message) })
-            .catch(err => {
-                // TODO:: Reditect to 500 error
-                console.log(err)
-            })
-    }, [])
 
     const [relavantProducts, setRelavantProducts] = useState([]);
     useEffect(() => {
@@ -44,11 +33,7 @@ function SearchPage() {
                     <img src={logo} alt="dunder-miflin logo" />
                 </div>
                 <div className="category-box">
-                    {categories.map(c =>
-                        <div className="category-title" key={c.id}>
-                            <Link to={"/categories/" + String(c.id) + "/products"}> {c.description} </Link>
-                        </div>
-                    )}
+                    <Categories />
                 </div>
             </div>
             <div className="view-area">

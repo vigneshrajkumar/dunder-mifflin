@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react"
-import { Link, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 import logo from "./../img/dm-logo.jfif"
 import Review from "./Review"
 import SearchBar from "./SearchBar"
+import Categories from "./Categories"
 
 function ProductPage() {
 
     let { sid, pid } = useParams();
     const [product, setProduct] = useState({})
     const [reviewInfo, setReviewInfo] = useState([]);
-    const [categories, setCategories] = useState([]);
 
-     useEffect(() => {
+    useEffect(() => {
         fetch("/api/stores/" + sid + "/products/" + pid)
             .then(res => res.json())
             .then((res => {
@@ -19,20 +19,12 @@ function ProductPage() {
                 setProduct(res.product)
                 setReviewInfo(res.product.reviews)
             }),
-             (error) => {
-                console.log("error ecnountered", error)
-            })
+                (error) => {
+                    console.log("error ecnountered", error)
+                })
     }, [])
 
-    useEffect(() => {
-        fetch("/api/categories")
-            .then(res => res.json())
-            .then(res => { setCategories(res.message) })
-            .catch(err => {
-                // TODO:: Reditect to 500 error
-                console.log(err)
-            })
-    }, [pid])
+
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -59,11 +51,7 @@ function ProductPage() {
                     <img src={logo} alt="dunder-miflin logo" />
                 </div>
                 <div className="category-box">
-                    {categories.map(c =>
-                        <div className="category-title" key={c.id}>
-                            <Link to={"/category/" + String(c.id) + "/products"}> {c.description} </Link>
-                        </div>
-                    )}
+                    <Categories />
                 </div>
             </div>
             <div className="view-area">
@@ -99,7 +87,7 @@ function ProductPage() {
                         <div className="title">Reviews</div>
                         <div>
                             <textarea name="content" onChange={handleChange}></textarea>
-                            </div>
+                        </div>
                         <div>
                             <select name="rating" onChange={handleChange}>
                                 <option>1</option>
@@ -116,7 +104,7 @@ function ProductPage() {
                 </div>
 
                 <div className="reviews">
-                    {reviewInfo.map(r => <Review review={r}/>)}
+                    {reviewInfo.map(r => <Review review={r} />)}
                 </div>
             </div>
         </div>
