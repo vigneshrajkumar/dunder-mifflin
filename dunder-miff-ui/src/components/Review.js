@@ -1,6 +1,6 @@
 import React from "react"
 
-function Review() {
+function Review(props) {
     return (
         <div className="review">
             <div className="review-title">Mike Ross</div>

@@ -44,14 +44,11 @@ router.get("/store/:name", function (req, res, next) {
   })
 })
 
-router.post("/stores/:sid/products/:pid", async function (req, res, next) {
+router.post("/stores/:sid/products", async function (req, res, next) {
 
   storeID = "-1" /* TODO: Get StoreID froms session information */
-
-  // console.log(req.body)
-
   const productObj = new Product({
-    _id: uuidv4(),
+    _id: req.body._id ? req.body._id : uuidv4(),
     name: req.body.name,
     brand: req.body.brand,
     product_image: "req.body.product_image",
@@ -123,8 +120,16 @@ router.get("/categories/:cid", async function (req, res) {
   });
 })
 
-router.post("/stores/:sid/products/:pid/reviews", function (req, res, next) {
-  console.log(req.body)
+router.post("/stores/:sid/products/:pid/reviews", async function (req, res, next) {
+  const filter = { _id: req.params.pid};
+  const update = { reviews: req.body.reviews }
+  let doc = await Product.findOneAndUpdate(filter, update, {
+    new: true,
+    upsert: true // Make this update into an upsert
+  });
+
+  console.log(doc);
+  return res.status(200).send({ status: "success", message: doc })
 })
 
 

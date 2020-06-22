@@ -13,7 +13,7 @@ function ProductPage() {
         fetch("/api/stores/" + sid + "/products/" + pid)
             .then(res => res.json())
             .then(res => setProduct(res.product))
-
+        
     }, [sid, pid])
 
     const [categories, setCategories] = useState([]);
@@ -105,10 +105,9 @@ function ProductPage() {
                         </div>
                     </form>
                 </div>
+                <p>{console.log(product)}</p>
+
                 <div className="reviews">
-                    <Review />
-                    <Review />
-                    <Review />
                 </div>
 
             </div>
