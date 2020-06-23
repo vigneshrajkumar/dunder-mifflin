@@ -12,7 +12,7 @@ function ProductPage() {
     const [categories, setCategories] = useState([]);
 
     const [content, setContent] = useState("");
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
 
     useEffect(() => {
         fetch("/api/stores/" + sid + "/products/" + pid)
@@ -25,7 +25,7 @@ function ProductPage() {
                 (error) => {
                     console.log("error ecnountered", error)
                 })
-    }, [])
+    }, [sid, pid])
 
     useEffect(() => {
         fetch("/api/categories")

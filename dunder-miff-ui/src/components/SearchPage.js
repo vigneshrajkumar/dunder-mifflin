@@ -23,7 +23,7 @@ function SearchPage() {
                 // TODO:: Reditect to 500 error
                 console.log(err)
             })
-    }, [])
+    })
 
     const [relavantProducts, setRelavantProducts] = useState([]);
     useEffect(() => {
@@ -35,7 +35,7 @@ function SearchPage() {
                 // TODO:: Reditect to 500 error
                 console.log(err)
             })
-    }, [])
+    }, [query])
 
     return (
         <div className="app">

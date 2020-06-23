@@ -20,7 +20,6 @@ function SearchBar() {
         fetch("/auth/logout")
         .then(res => res.json())
         .then(res => console.log(res))
-        
     }
 
     const [user, setUser] = useState("")
@@ -55,8 +54,7 @@ function SearchBar() {
                 </form>
             </div>
             <div className="links">
-            <Link to="/cart">  Cart </Link> 
-            <a onClick={handleLogout} href="#"> Logout </a>
+            <button onClick={handleLogout}> Logout </button>
             </div>
         </div>
     )
