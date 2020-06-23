@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react"
-import { Link, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 import logo from "./../img/dm-logo.jfif"
 import Review from "./Review"
 import SearchBar from "./SearchBar"
+import Categories from "./Categories"
 
 function ProductPage() {
 
     let { sid, pid } = useParams();
     const [product, setProduct] = useState({})
     const [reviewInfo, setReviewInfo] = useState([]);
-    const [categories, setCategories] = useState([]);
 
     const [content, setContent] = useState("");
     const [rating, setRating] = useState(1);
@@ -27,15 +27,7 @@ function ProductPage() {
                 })
     }, [sid, pid])
 
-    useEffect(() => {
-        fetch("/api/categories")
-            .then(res => res.json())
-            .then(res => { setCategories(res.message) })
-            .catch(err => {
-                // TODO:: Reditect to 500 error
-                console.log(err)
-            })
-    }, [pid])
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -66,11 +58,7 @@ function ProductPage() {
                     <img src={logo} alt="dunder-miflin logo" />
                 </div>
                 <div className="category-box">
-                    {categories.map(c =>
-                        <div className="category-title" key={c.id}>
-                            <Link to={"/category/" + String(c.id) + "/products"}> {c.description} </Link>
-                        </div>
-                    )}
+                    <Categories />
                 </div>
             </div>
             <div className="view-area">
