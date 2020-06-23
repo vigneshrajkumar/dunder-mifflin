@@ -11,7 +11,10 @@ function ProductPage() {
     const [reviewInfo, setReviewInfo] = useState([]);
     const [categories, setCategories] = useState([]);
 
-     useEffect(() => {
+    const [content, setContent] = useState("");
+    const [rating, setRating] = useState(0);
+
+    useEffect(() => {
         fetch("/api/stores/" + sid + "/products/" + pid)
             .then(res => res.json())
             .then((res => {
@@ -19,9 +22,9 @@ function ProductPage() {
                 setProduct(res.product)
                 setReviewInfo(res.product.reviews)
             }),
-             (error) => {
-                console.log("error ecnountered", error)
-            })
+                (error) => {
+                    console.log("error ecnountered", error)
+                })
     }, [])
 
     useEffect(() => {
@@ -34,20 +37,24 @@ function ProductPage() {
             })
     }, [pid])
 
-    function handleChange(e) {
-        const { name, value } = e.target
-        console.log(e)
-    }
-
     function handleSubmit(e) {
         e.preventDefault();
+        reviewInfo.push({
+            content: content,
+            rating: rating
+        })
         console.log("submiting with ", reviewInfo);
-        fetch("/stores/" + sid + "/products/" + pid + "/reviews", {
+        fetch("/api/stores/" + sid + "/products/" + pid + "/reviews", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 reviews: reviewInfo
             })
+        })
+        .then((res) => {
+            console.log(res)
+        }, (error) => {
+            console.log(error)
         })
     }
 
@@ -98,10 +105,10 @@ function ProductPage() {
                     <form onSubmit={handleSubmit}>
                         <div className="title">Reviews</div>
                         <div>
-                            <textarea name="content" onChange={handleChange}></textarea>
-                            </div>
+                            <textarea name="content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
+                        </div>
                         <div>
-                            <select name="rating" onChange={handleChange}>
+                            <select name="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -110,13 +117,13 @@ function ProductPage() {
                             </select>
                         </div>
                         <div>
-                            <button>Post Review</button>
+                            <input type="submit" value="Post Review" />
                         </div>
                     </form>
                 </div>
 
                 <div className="reviews">
-                    {reviewInfo.map(r => <Review review={r}/>)}
+                    {reviewInfo.map(r => <Review key={reviewInfo.indexOf(r)} review={r} />)}
                 </div>
             </div>
         </div>
