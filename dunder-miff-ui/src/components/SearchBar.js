@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 
 import { Link, useHistory } from "react-router-dom"
 
+import "./../styles/searchBar.css"
+
 function SearchBar() {
 
     const [searchTerm, setSearchTerm] = useState("")
@@ -18,8 +20,8 @@ function SearchBar() {
 
     function handleLogout(e) {
         fetch("/auth/logout")
-        .then(res => res.json())
-        .then(res => console.log(res))
+            .then(res => res.json())
+            .then(res => console.log(res))
     }
 
     const [user, setUser] = useState("")
@@ -29,7 +31,6 @@ function SearchBar() {
             .then(res => setUser(res.message))
 
     }, [])
-    
 
     if (user === null) {
         return (
@@ -54,7 +55,8 @@ function SearchBar() {
                 </form>
             </div>
             <div className="links">
-            <button onClick={handleLogout}> Logout </button>
+                <Link to="/cart"> Cart </Link>
+                <button onClick={handleLogout}> Logout </button>
             </div>
         </div>
     )
