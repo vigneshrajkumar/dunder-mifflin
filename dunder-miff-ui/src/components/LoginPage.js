@@ -32,10 +32,11 @@ function LoginPage(props) {
             .then(res => res.json())
             .then(res => {
                 if (res.status === "success") {
-                    history.push("/categories/0/products")
+                    history.push("/")
                 } else {
                     // TODO:: notify user
                     console.log("invalid credentails")
+                    alert("invalid credentails");
                 }
             })
     }

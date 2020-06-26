@@ -4,15 +4,14 @@ var { v4: uuidv4 } = require('uuid');
 var User = require('./../models/user')
 
 /* POST /login authenticates the user */
-router.post('/login', function (req, res, next) {
+router.post('/login', (req, res, next) => {
     const userObj = new User({
-        id: uuidv4(),
         email: req.body.email,
         password: req.body.password,
         isSeller: req.body.isSeller
     })
     // TODO::vig Salt the password and hash it.
-    User.findOne({ 'email': userObj.email }, function (err, usr) {
+    User.findOne({ 'email': userObj.email }, (err, usr) => {
         if (err) {
             return err;
         }
@@ -20,23 +19,29 @@ router.post('/login', function (req, res, next) {
             return res.status(200).send({ status: "failure", message: 'invalid credentials' });
         }
         const sessionKey = uuidv4()
-        User.update({ 'email': userObj.email }, { 'sessionKey': sessionKey }, function (err, usr) {
+        User.update({ 'email': userObj.email }, { 'sessionKey': sessionKey }, (err, usr) => {
             if (err) {
                 return err;
             }
             res.cookie('dm-auth', sessionKey, { expire: 360000 + Date.now() })
             return res.json({ status: "success", sessionKey: sessionKey });
         })
-        // its not write to keep a return stmt here; you'd be rewriting headers; callbacks on completion, unwinds the stack
     })
 });
 
 
 /* get /user returns the current signed user info */
 router.get('/user', async function (req, res) {
-    let err, usr = await User.findOne({ 'sessionKey': req.cookies['dm-auth'] }, { 'email': true })
-    if (err) res.status(500).send({ status: "failure", message: err.message });
-    return res.status(200).send({ status: "success", message: usr });
+    User.findOne({ 'sessionKey': req.cookies['dm-auth'] }, { 'email': true }, function (err, doc) {
+        if (err) {
+            return res.status(500).send({ status: "failure", message: err.message });
+        }
+
+        if (doc == null) {
+            return res.status(500).send({ status: "failure", message: "Invalid Credentials" });
+        }
+        return res.status(200).send({ status: "success", message: doc });
+    })
 });
 
 
@@ -66,12 +71,12 @@ router.post('/register', function (req, res, next) {
         if (usr != null) {
             return res.status(422).send({ status: "failed", message: 'User already exist' });
         }
-    })
-    userObj.save(function (err) {
-        if (err) {
-            return err;
-        };
-        return res.status(200).send({ status: "success", message: 'User created' })
+        userObj.save(err => {
+            if (err) {
+                return err;
+            };
+            return res.status(200).send({ status: "success", message: 'User created' })
+        })
     })
 });
 

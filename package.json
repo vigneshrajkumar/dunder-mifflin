@@ -11,7 +11,9 @@
     "test": "mocha ./tests/"
   },
   "nodemonConfig": {
-    "ignore": ["dunder-miff-ui/*"]
+    "ignore": [
+      "dunder-miff-ui/*"
+    ]
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

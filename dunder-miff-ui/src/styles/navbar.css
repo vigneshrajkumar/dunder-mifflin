@@ -1,0 +1,33 @@
+.nav-bar {
+    height: 100px;
+}
+
+.nav-bar ul {
+    list-style-type: none;
+}
+
+.nav-bar li {
+    float: left;
+    padding: 5px;
+}
+
+.nav-bar .logo-box img{
+    width: 150px;
+}
+
+.nav-bar .links{
+ text-align: right;
+ float: right;
+}
+
+.nav-bar .links a{
+    color: var(--dunder-blue);
+}
+
+.nav-bar .links a:hover{
+    color: black;
+}
+
+.sliding-panel {
+  background-color: blue;
+}

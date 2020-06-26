@@ -105,7 +105,6 @@ router.get("/categories/:cid/products", async function (req, res) {
 })
 
 router.get("/categories", async function (req, res) {
-  console.log("booming")
   Category.find({}).exec((err, cats) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
     console.log("found: ", cats)

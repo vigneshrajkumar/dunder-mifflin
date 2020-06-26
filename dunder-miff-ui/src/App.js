@@ -15,6 +15,7 @@ import ProductPage from "./components/ProductPage"
 import SearchPage from "./components/SearchPage"
 import StorePage from "./components/StorePage"
 import InventoryPage from "./components/InventoryPage"
+import HomePage from "./components/HomePage"
 
 function App() {
   return (

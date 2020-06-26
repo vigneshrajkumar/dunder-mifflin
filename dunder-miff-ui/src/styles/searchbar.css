@@ -1,0 +1,10 @@
+.search-bar{
+    width: 70%;
+}
+  
+.search-bar input{
+     height: 2em;
+     border: 2px solid var(--dunder-blue);
+     width: 50%;
+  }
+  
