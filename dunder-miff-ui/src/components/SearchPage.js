@@ -14,17 +14,6 @@ function SearchPage() {
     }
     let query = useQuery()
 
-    const [categories, setCategories] = useState([]);
-    useEffect(() => {
-        fetch("/api/categories")
-            .then(res => res.json())
-            .then(res => { setCategories(res.message) })
-            .catch(err => {
-                // TODO:: Reditect to 500 error
-                console.log(err)
-            })
-    })
-
     const [relavantProducts, setRelavantProducts] = useState([]);
     useEffect(() => {
         // TODO: Sanitize params

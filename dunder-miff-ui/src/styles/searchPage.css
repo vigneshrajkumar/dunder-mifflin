@@ -9,3 +9,120 @@
    margin: 1em 0;
    font-style: italic;
  }
+
+ 
+.results {
+   display: grid;
+   grid-template-columns: 70% 30%;
+ }
+
+ .checkout-pane .title{
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--dunder-blue);
+ }
+
+ .store-item .store-name{
+   font-size: 1.2rem;
+   font-style: italic;
+}
+
+ .store-item .item{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: .5em 1em;
+    
+ }
+ .store-item .item .price{
+   text-align: right;
+}
+
+.checkout-pane {
+   background-color: var(--dunder-white);
+   padding: .5em;
+}
+
+.checkout-pane .total{
+   display: grid;
+   grid-template-columns: 50% 50%;
+   color: var(--dunder-blue);
+   margin: .5em 1em;
+   text-align: right;
+}
+
+.checkout-pane .footer{
+   text-align: right;
+}
+
+.checkout-pane .footer button{
+   background-color: var(--dunder-blue);
+   color: var(--dunder-white);
+   border: none;
+   font-size: 1.2rem;
+   font-weight: normal;
+   padding: .4em;
+   margin: .5em;
+}
+
+.checkout-pane .footer button:hover{
+   background-color: black;
+   color: var(--dunder-white);
+   border: none;
+   font-size: 1.2rem;
+   font-weight: normal;
+   padding: .4em;
+   margin: .5em;
+   cursor: pointer;
+}
+
+
+
+.search-result{
+   display: grid;
+   grid-template-columns: 20% auto 20%;
+   max-width: 60%;
+   height: 100px;
+   border-bottom: 2px solid var(--dunder-blue);
+   margin: 10px 0px;
+   padding: 10px 0px;
+}
+
+.search-result .image-box{
+  align-self: center;
+  justify-self: center;
+}
+
+.search-result .image-box img{
+   border: 2px solid var(--dunder-blue);
+}
+
+.search-result .price-rating-box{
+   display: grid;
+   grid-template-rows: 50% 50%;
+   align-items: center;
+}
+
+
+.search-result .description-box{
+   display: grid;
+   grid-template-rows: 30% 30% 30%;
+   align-items: center;
+}
+
+.search-result .description-box a{
+text-decoration: none;
+ color: var(--dunder-blue);
+}
+
+.search-result .description-box a:hover{
+   text-decoration: none;
+    color: black;
+  }
+
+
+.search-result .product-name{
+  font-size: 24px;
+}
+
+.search-result .product-seller{
+   font-size: 14px;
+}

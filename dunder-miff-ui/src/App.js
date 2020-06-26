@@ -16,6 +16,7 @@ import SearchPage from "./components/SearchPage"
 import StorePage from "./components/StorePage"
 import InventoryPage from "./components/InventoryPage"
 import HomePage from "./components/HomePage"
+import CartPage from "./components/CartPage"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
         <Route path="/store/:id"> <StorePage /> </Route>
         <Route path="/search"> <SearchPage /> </Route>
+        <Route path="/cart"> <CartPage /> </Route>
         <Route path="/"><Redirect to={{ pathname: "/categories/0/products" }} /> </Route>
         {/* <Route path="/"><HomePage/> </Route> */}
       </Switch>
