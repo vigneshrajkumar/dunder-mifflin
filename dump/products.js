@@ -1,6 +1,6 @@
 module.exports = [{
     _id: "100",
-    categories: ["1"],
+    categories: ["0","1"],
     name: "product a",
     brand: "brand a",
     product_image: "https://via.placeholder.com/200",
@@ -24,7 +24,7 @@ module.exports = [{
     storeID: "-1",
 }, {
     _id: "101",
-    categories: ["2"],
+    categories: ["0","2"],
     name: "product type b",
     brand: "brand b",
     product_image: "https://via.placeholder.com/200",
@@ -48,7 +48,7 @@ module.exports = [{
     storeID: "-1",
 }, {
     _id: "102",
-    categories: ["1"],
+    categories: ["0","1"],
     name: "product a",
     brand: "brand a",
     product_image: "https://via.placeholder.com/200",
@@ -72,7 +72,7 @@ module.exports = [{
     storeID: "-1",
 }, {
     _id: "103",
-    categories: ["2"],
+    categories: ["0","2"],
     name: "product type b",
     brand: "brand b",
     product_image: "https://via.placeholder.com/200",
@@ -96,7 +96,7 @@ module.exports = [{
     storeID: "-1",
 }, {
     _id: "104",
-    categories: ["1"],
+    categories: ["0","1"],
     name: "product a",
     brand: "brand a",
     product_image: "https://via.placeholder.com/200",
@@ -120,7 +120,7 @@ module.exports = [{
     storeID: "-1",
 }, {
     _id: "105",
-    categories: ["2"],
+    categories: ["0","2"],
     name: "product type b",
     brand: "brand b",
     product_image: "https://via.placeholder.com/200",
@@ -144,7 +144,7 @@ module.exports = [{
     storeID: "-1",
 }, {
     _id: "106",
-    categories: ["1"],
+    categories: ["0","1"],
     name: "product a",
     brand: "brand a",
     product_image: "https://via.placeholder.com/200",
@@ -168,7 +168,7 @@ module.exports = [{
     storeID: "-1",
 }, {
     _id: "107",
-    categories: ["2"],
+    categories: ["0","2"],
     name: "product type b",
     brand: "brand b",
     product_image: "https://via.placeholder.com/200",
@@ -192,7 +192,7 @@ module.exports = [{
     storeID: "-2",
 }, {
     _id: "108",
-    categories: ["1"],
+    categories: ["0","1"],
     name: "product a",
     brand: "brand a",
     product_image: "https://via.placeholder.com/200",
@@ -216,7 +216,7 @@ module.exports = [{
     storeID: "-2",
 }, {
     _id: "109",
-    categories: ["2"],
+    categories: ["0","2"],
     name: "product type b",
     brand: "brand b",
     product_image: "https://via.placeholder.com/200",
@@ -240,7 +240,7 @@ module.exports = [{
     storeID: "-2",
 }, {
     _id: "110",
-    categories: ["1"],
+    categories: ["0","1"],
     name: "product a",
     brand: "brand a",
     product_image: "https://via.placeholder.com/200",
@@ -264,7 +264,7 @@ module.exports = [{
     storeID: "-2",
 }, {
     _id: "111",
-    categories: ["2"],
+    categories: ["0","2"],
     name: "product type b",
     brand: "brand b",
     product_image: "https://via.placeholder.com/200",
