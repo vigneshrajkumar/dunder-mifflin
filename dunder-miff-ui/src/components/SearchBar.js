@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 import "../styles/searchBar.css";
@@ -7,6 +7,9 @@ import "../styles/searchBar.css";
 function SearchBar() {
 
     const [searchTerm, setSearchTerm] = useState("")
+    const [user, setUser] = useState("")
+    const [loggedIn, setLoggedIn] = useState(false)
+
     let history = useHistory()
 
     function handleChange(e) {
@@ -24,7 +27,6 @@ function SearchBar() {
             .then(res => console.log(res))
     }
 
-    const [user, setUser] = useState("")
     useEffect(() => {
         fetch("/auth/user")
             .then(res => res.json())
@@ -32,7 +34,7 @@ function SearchBar() {
 
     }, [])
 
-    if (user === null) {
+    if (!loggedIn) {
         return (
             <div className="search-bar">
                 <div className="search-input">
@@ -41,12 +43,12 @@ function SearchBar() {
                     </form>
                 </div>
                 <div className="links">
+                <Link to="/cart"> Cart </Link>
                     <Link to="/user/login"> Login </Link>
                 </div>
             </div>
         )
     }
-
     return (
         <div className="search-bar">
             <div className="search-input">

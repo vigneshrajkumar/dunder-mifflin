@@ -67,6 +67,7 @@ function LoginPage(props) {
                         <div className="link"> <Link to="/forgot-password">forgot password?</Link> </div>
                         <div className="submit-button"> <button>Sign In</button> </div>
                         <div className="link"> <Link to="/user/register">create new account</Link> </div>
+                        <div className="link"> <Link to="/seller/register">create new seller account</Link> </div>
                         <div className="link"> <Link to="/">go back</Link> </div>
                     </form>
                 </div>

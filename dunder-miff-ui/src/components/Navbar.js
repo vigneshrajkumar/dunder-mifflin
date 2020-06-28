@@ -10,20 +10,7 @@ import "../styles/navbar.css";
 
 
 export default function Navbar(props) {
-    const [user, setUser] = useState(null);
-    const [openPanel, setOpenPanel] = useState(false);
-    const [isLoggedIn, setLoggedIn] = useState(false);
-
-    useEffect(() => {
-        fetch("/auth/user")
-            .then(res => res.json())
-            .then(res => {
-                setUser(res)
-                if(res.status === "success")
-                setLoggedIn(true)
-            })
-            .catch(err => console.log(err.message))
-    }, [])
+    const [openPanel, setOpenPanel] = useState(false);    
 
     function handleLogout(e) {
         fetch("/auth/logout")
@@ -31,8 +18,8 @@ export default function Navbar(props) {
             .then(res => console.log(res))
     }
 
-    function Login() {
-        if (!isLoggedIn) {
+    function Login(props) {
+        if (!props.loggedIn) {
             return (<div>
                 <Link to="/user/login"> Login </Link>
             </div>)
@@ -59,7 +46,7 @@ export default function Navbar(props) {
                     <SearchBar />
                 </li>
                 <li className="links">
-                    <Login user={props.user}></Login>
+                    <Login loggedIn={props.logIn}></Login>
                 </li>
             </ul>
 
