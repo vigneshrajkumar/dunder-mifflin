@@ -28,8 +28,13 @@ function RegisterPage(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginDetails)
         })
-            .then(res => res.json())
-            .then(res => console.log(res))
+        .then(res => {
+            res.json()
+            console.log(res);
+            if(res.statusText === "OK") {
+                alert("Registered Successfully")
+            }
+        })
     }
 
     return (

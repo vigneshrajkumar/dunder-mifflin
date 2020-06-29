@@ -20,7 +20,6 @@ function LoginPage(props) {
 
     let history = useHistory()
 
-
     function handleSumbit(e) {
         e.preventDefault()
 
@@ -32,6 +31,9 @@ function LoginPage(props) {
             .then(res => res.json())
             .then(res => {
                 if (res.status === "success") {
+                    if(props.sellerLogin) {
+                        history.push("/seller/inventory")
+                    }
                     history.push("/")
                 } else {
                     // TODO:: notify user
@@ -52,7 +54,7 @@ function LoginPage(props) {
 
                 <div className="login-box">
                     <form onSubmit={handleSumbit}>
-                        <div className="heading"> {props.sellerRegistration ? "Seller Account" : "Customer Account"} </div>
+                        <div className="heading"> {props.sellerLogin ? "Seller Account" : "Customer Account"} </div>
 
                         <div className="input-group">
                             <div className="label"> Email: </div>
@@ -66,8 +68,14 @@ function LoginPage(props) {
 
                         <div className="link"> <Link to="/forgot-password">forgot password?</Link> </div>
                         <div className="submit-button"> <button>Sign In</button> </div>
-                        <div className="link"> <Link to="/user/register">create new account</Link> </div>
-                        <div className="link"> <Link to="/seller/register">create new seller account</Link> </div>
+                        <div className="link">{props.sellerLogin ?
+                              <Link to="/user/login">User Login</Link> 
+                            :<Link to="/seller/login">Seller Login</Link>}
+                        </div>
+                        <div className="link">{props.sellerLogin ?
+                            <Link to="/seller/register">create new seller account</Link> 
+                            : <Link to="/user/register">create new user account</Link>}
+                        </div>
                         <div className="link"> <Link to="/">go back</Link> </div>
                     </form>
                 </div>

@@ -26,7 +26,7 @@ function App() {
         <Route path="/user/login"> <LoginPage sellerLogin={false} /> </Route>
         <Route path="/seller/register"> <RegisterPage sellerRegistration={true} /> </Route>
         <Route path="/seller/login"> <LoginPage sellerLogin={true} /> </Route>
-        <Route path="/inventory"> <InventoryPage /> </Route>
+        <Route path="/seller/inventory"> <InventoryPage /> </Route>
         <Route path="/categories/:cid/products" children={<ProductGridPage />} />
         <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
         <Route path="/store/:id"> <StorePage /> </Route>
