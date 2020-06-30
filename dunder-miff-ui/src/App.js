@@ -17,16 +17,21 @@ import StorePage from "./components/StorePage"
 import InventoryPage from "./components/InventoryPage"
 import HomePage from "./components/HomePage"
 import CartPage from "./components/CartPage"
+import OrdersPage from './components/OrdersPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/user/register"> <RegisterPage sellerRegistration={false} /> </Route>
-        <Route path="/user/login"> <LoginPage sellerLogin={false} /> </Route>
+     
         <Route path="/seller/register"> <RegisterPage sellerRegistration={true} /> </Route>
         <Route path="/seller/login"> <LoginPage sellerLogin={true} /> </Route>
         <Route path="/seller/inventory"> <InventoryPage /> </Route>
+        <Route path="/seller/orders"> <OrdersPage /> </Route>
+
+        <Route path="/user/register"> <RegisterPage sellerRegistration={false} /> </Route>
+        <Route path="/user/login"> <LoginPage sellerLogin={false} /> </Route>
+        
         <Route path="/categories/:cid/products" children={<ProductGridPage />} />
         <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
         <Route path="/store/:id"> <StorePage /> </Route>

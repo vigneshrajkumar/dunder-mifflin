@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import logo from "./../img/dm-logo.jfif"
 
@@ -10,6 +10,7 @@ import "./../styles/loginPage.css"
 function RegisterPage(props) {
 
     const [loginDetails, setLoginDetails] = useState({})
+    let history = useHistory()
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -32,6 +33,9 @@ function RegisterPage(props) {
             res.json()
             console.log(res);
             if(res.statusText === "OK") {
+                if(props.sellerRegistration){
+                    history.push("/seller/inventory")
+                }
                 alert("Registered Successfully")
             }
         })

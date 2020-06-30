@@ -9,6 +9,7 @@ import "./../styles/loginPage.css"
 function LoginPage(props) {
 
     const [loginDetails, setLoginDetails] = useState({})
+    let history = useHistory()
 
     function handleChange(e) {
         const { name, value } = e.target
@@ -18,7 +19,6 @@ function LoginPage(props) {
         }))
     }
 
-    let history = useHistory()
 
     function handleSumbit(e) {
         e.preventDefault()
@@ -32,12 +32,12 @@ function LoginPage(props) {
             .then(res => {
                 if (res.status === "success") {
                     if(props.sellerLogin) {
-                        history.push("/seller/inventory")
+                        return history.push("/seller/inventory")
+                    } else {
+                        return history.push("/")
                     }
-                    history.push("/")
                 } else {
                     // TODO:: notify user
-                    console.log("invalid credentails")
                     alert("invalid credentails");
                 }
             })
