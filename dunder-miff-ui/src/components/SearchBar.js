@@ -7,7 +7,7 @@ import "../styles/searchBar.css";
 function SearchBar() {
 
     const [searchTerm, setSearchTerm] = useState("")
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
 
     let history = useHistory()
@@ -24,14 +24,23 @@ function SearchBar() {
     function handleLogout(e) {
         fetch("/auth/logout")
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.status === "success") {
+                    setLoggedIn(false);
+                }
+            })
+
     }
 
     useEffect(() => {
         fetch("/auth/user")
             .then(res => res.json())
-            .then(res => setUser(res.message))
-
+            .then(res => {
+                console.log(res)
+                if (res.status === "success") {
+                    setLoggedIn(true)
+                }
+            })
     }, [])
 
     if (!loggedIn) {
@@ -43,7 +52,6 @@ function SearchBar() {
                     </form>
                 </div>
                 <div className="links">
-                <Link to="/cart"> Cart </Link>
                     <Link to="/user/login"> Login </Link>
                 </div>
             </div>
