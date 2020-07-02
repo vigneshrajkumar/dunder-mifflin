@@ -35,7 +35,6 @@ function ProductPage() {
     }, [sid])
 
 
-
     function handleSubmit(e) {
         e.preventDefault();
         reviewInfo.push({

@@ -44,10 +44,11 @@ function ProductGridPage() {
             <div className="view-area">
                 <SearchBar />
                 <div className="title-bar">
-                    <div> {currentCategory.description} </div>
+                    <div> { currentCategory === null ? "fetching.." : currentCategory.description} </div>
                 </div>
                 <div className="product-grid">
-                    {products.map(p => <GridItem
+                    { products === null ? "fetching.." :
+                    products.map(p => <GridItem
                         key={p._id}
                         product={p}
                     />)}

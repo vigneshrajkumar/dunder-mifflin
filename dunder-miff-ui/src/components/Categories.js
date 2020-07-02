@@ -11,11 +11,12 @@ function Categories() {
     }, [])
     return (
         <div>
-            {categories.map(c =>
-                <div className="category-title" key={c.id}>
-                    <Link to={"/categories/" + String(c.id) + "/products"}> {c.description} </Link>
-                </div>
-            )}
+            {categories === [] ? "loading.." :
+                categories.map(c =>
+                    <div className="category-title" key={c.id}>
+                        <Link to={"/categories/" + String(c.id) + "/products"}> {c.description} </Link>
+                    </div>
+                )}
         </div>
     )
 }
