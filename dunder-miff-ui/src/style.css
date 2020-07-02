@@ -61,6 +61,13 @@ body{
     padding: 10px 0px;
 }
 
+.view-area .title-bar .store-name a{
+    font-size: 2rem;
+    color: var(--dunder-blue);
+    text-decoration: none;
+}
+
+
 .view-area .product-grid{
     display: grid;
     grid-template-columns: auto auto auto auto;

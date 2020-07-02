@@ -15,7 +15,7 @@ import ProductPage from "./components/ProductPage"
 import SearchPage from "./components/SearchPage"
 import StorePage from "./components/StorePage"
 import InventoryPage from "./components/InventoryPage"
-import HomePage from "./components/HomePage"
+// import HomePage from "./components/HomePage"
 import CartPage from "./components/CartPage"
 import OrdersPage from './components/OrdersPage';
 
@@ -33,8 +33,8 @@ function App() {
         <Route path="/user/login"> <LoginPage sellerLogin={false} /> </Route>
         
         <Route path="/categories/:cid/products" children={<ProductGridPage />} />
-        <Route path="/store/:sid/product/:pid"> <ProductPage /> </Route>
-        <Route path="/store/:id"> <StorePage /> </Route>
+        <Route path="/stores/:sid/product/:pid"> <ProductPage /> </Route>
+        <Route path="/stores/:sid"> <StorePage /> </Route>
         <Route path="/search"> <SearchPage /> </Route>
         <Route path="/cart"> <CartPage /> </Route>
         <Route path="/"><Redirect to={{ pathname: "/categories/0/products" }} /> </Route>

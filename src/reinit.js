@@ -3,6 +3,7 @@ const db = require("./../conf/db")
 const baseCollections = require("./../conf/collections")
 const categories = require("./../conf/categories")
 const products = require("./../dump/products")
+const stores = require("./../dump/stores")
 const uri = require("./../conf/uriBuilder")
 
 console.log("> Reiniting DB");
@@ -24,6 +25,7 @@ console.log("> Reiniting DB");
 
         await client.db(db.name).collection('categories').insertMany(categories);
         await client.db(db.name).collection('products').insertMany(products);
+        await client.db(db.name).collection('stores').insertMany(stores);
     } catch (err) {
         console.log(err)
     }

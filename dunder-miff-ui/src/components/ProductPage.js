@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {  useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import logo from "./../img/dm-logo.jfif"
 import Review from "./Review"
 import SearchBar from "./SearchBar"
@@ -18,7 +18,6 @@ function ProductPage() {
         fetch("/api/stores/" + sid + "/products/" + pid)
             .then(res => res.json())
             .then((res => {
-                console.log("Effect invoked. ", res)
                 setProduct(res.product)
                 setReviewInfo(res.product.reviews)
             }),
@@ -26,6 +25,14 @@ function ProductPage() {
                     console.log("error ecnountered", error)
                 })
     }, [sid, pid])
+
+    const [store, setStore] = useState({})
+    useEffect(() => {
+        fetch("/api/stores/" + sid)
+            .then(res => res.json())
+            .then(res => setStore(res.store))
+            .catch(err => console.log(err))
+    }, [sid])
 
 
 
@@ -35,7 +42,6 @@ function ProductPage() {
             content: content,
             rating: rating
         })
-        console.log("submiting with ", reviewInfo);
         fetch("/api/stores/" + sid + "/products/" + pid + "/reviews", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -43,11 +49,10 @@ function ProductPage() {
                 reviews: reviewInfo
             })
         })
-        .then((res) => {
-            console.log(res)
-        }, (error) => {
-            console.log(error)
-        })
+            .then((res) => {
+            }, (error) => {
+                console.log(error)
+            })
     }
 
 
@@ -64,7 +69,7 @@ function ProductPage() {
             <div className="view-area">
                 <SearchBar />
                 <div className="title-bar">
-                    <div>{sid}  </div>
+                    <div className="store-name"> <Link to={"/stores/" + sid}> {store.name}</Link>  </div>
                 </div>
                 <div className="product">
                     <div className="image-box">

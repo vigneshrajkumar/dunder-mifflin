@@ -36,7 +36,6 @@ function SearchBar() {
         fetch("/auth/user")
             .then(res => res.json())
             .then(res => {
-                console.log(res)
                 if (res.status === "success") {
                     setLoggedIn(true)
                 }

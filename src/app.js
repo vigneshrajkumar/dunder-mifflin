@@ -36,7 +36,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 400);
   res.send({
     status: "error",
-    message: "Malfromed URI"
+    message: err.message
   });
 });
 

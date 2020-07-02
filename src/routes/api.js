@@ -34,13 +34,14 @@ router.post("/store", function (req, res, next) {
   })
 })
 
-router.get("/store/:name", function (req, res, next) {
-  Store.findOne({ 'name': req.params.name }, (err, store) => {
-    if (err) {
-      return res.status(500).send({ status: "success", message: err.message });
-    }
-    return res.status(500).send({ status: "success", message: store });
+router.get("/stores/:sid", (req, res, next) => {
 
+  console.log("store id: ", req.params.sid)
+
+  Store.findOne({ '_id': req.params.sid }, (err, store) => {
+    if (err) {console.log(err)}
+
+    return res.status(500).send({ store: store });
   })
 })
 
@@ -107,7 +108,6 @@ router.get("/categories/:cid/products", async function (req, res) {
 router.get("/categories", async function (req, res) {
   Category.find({}).exec((err, cats) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
-    console.log("found: ", cats)
     return res.status(200).send({ status: "success", message: cats });
   });
 })
@@ -121,23 +121,19 @@ router.get("/categories/:cid", async function (req, res) {
 })
 
 router.post("/stores/:sid/products/:pid/reviews", async function (req, res, next) {
-  const filter = { _id: req.params.pid};
+  const filter = { _id: req.params.pid };
   const update = { reviews: req.body.reviews }
   let doc = await Product.findOneAndUpdate(filter, update, {
     new: true,
     upsert: true // Make this update into an upsert
   });
-
-  console.log(doc);
   return res.status(200).send({ status: "success", message: doc })
 })
 
 
 router.get("/search", async (req, res) => {
-  console.log(req.query.key)
   Product.find({ "name": { "$regex": req.query.key, "$options": "i" } }).exec((err, products) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
-    console.log(products)
     return res.status(200).send({ status: "success", message: products });
   })
 })
