@@ -1,0 +1,10 @@
+.view-area .error {
+    margin: 15em 0em;
+    text-align: center;
+}
+
+
+.view-area .error .error-code{
+    font-size: 10rem;
+}
+

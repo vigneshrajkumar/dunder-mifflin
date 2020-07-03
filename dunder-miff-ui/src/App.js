@@ -17,7 +17,9 @@ import StorePage from "./components/StorePage"
 import InventoryPage from "./components/InventoryPage"
 // import HomePage from "./components/HomePage"
 import CartPage from "./components/CartPage"
-import OrdersPage from './components/OrdersPage';
+import OrdersPage from './components/OrdersPage'
+import E404Page from './components/E404Page'
+import E500Page from './components/E500Page'
 
 function App() {
   return (
@@ -37,7 +39,10 @@ function App() {
         <Route path="/stores/:sid"> <StorePage /> </Route>
         <Route path="/search"> <SearchPage /> </Route>
         <Route path="/cart"> <CartPage /> </Route>
-        <Route path="/"><Redirect to={{ pathname: "/categories/0/products" }} /> </Route>
+
+        <Route path="/404"> <E404Page /> </Route>
+        <Route path="/500"> <E500Page /> </Route>
+        <Route path="/"><Redirect to={{ pathname: "/404" }} /> </Route>
         {/* <Route path="/"><HomePage/> </Route> */}
       </Switch>
     </BrowserRouter>
