@@ -34,10 +34,14 @@ function SearchBar() {
 
     useEffect(() => {
         fetch("/auth/user")
-            .then(res => res.json())
             .then(res => {
-                if (res.status === "success") {
+                if (res.ok){
+                    let json = res.json()
+                    console.log("authenticated")
                     setLoggedIn(true)
+                    setUser(json.message)
+                }else{
+                    console.log("not authenticated")
                 }
             })
     }, [])

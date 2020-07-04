@@ -4,6 +4,7 @@ var { v4: uuidv4 } = require('uuid');
 const Store = require('../models/store');
 const Product = require('../models/product');
 const Category = require('../models/category');
+const User = require('../models/user');
 
 router.get('/ping', function (req, res, next) {
   res.send({
@@ -11,6 +12,14 @@ router.get('/ping', function (req, res, next) {
     value: "pong"
   });
 });
+
+
+router.put("/users/:uid/cart", (req, res, next) => {
+  User.update({'sessionKey': req.cookies['dm-auth']}, {$push:{'cart': req.body.product}}, (err) => {
+    if (err){ next(err)}
+    res.json({"message": "added to cart"})
+  })
+})
 
 router.post("/store", function (req, res, next) {
   const storeObj = new Store({
@@ -35,13 +44,9 @@ router.post("/store", function (req, res, next) {
 })
 
 router.get("/stores/:sid", (req, res, next) => {
-
-  console.log("store id: ", req.params.sid)
-
   Store.findOne({ '_id': req.params.sid }, (err, store) => {
-    if (err) {console.log(err)}
-
-    return res.status(500).send({ store: store });
+    if (err) { next(err) }
+    return res.json({ store: store });
   })
 })
 

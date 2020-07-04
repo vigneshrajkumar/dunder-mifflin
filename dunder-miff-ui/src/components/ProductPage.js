@@ -54,6 +54,19 @@ function ProductPage() {
             })
     }
 
+    async function addToCart() {
+        let res = await fetch("/api/users/x/cart", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                product: product
+            })
+        })
+        if (!res.ok){
+            console.error(res)
+        }
+    }
+
 
     return (
         <div className="app">
@@ -89,7 +102,7 @@ function ProductPage() {
                             </div>
                         <div className="product-buttons">
                             <button> Buy Now </button>
-                            <button> Add to Cart </button>
+                            <button onClick={addToCart}> Add to Cart </button>
                         </div>
                     </div>
                 </div>

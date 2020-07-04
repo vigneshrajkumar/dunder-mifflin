@@ -31,16 +31,14 @@ router.post('/login', (req, res, next) => {
 
 
 /* get /user returns the current signed user info */
-router.get('/user', async function (req, res) {
-    User.findOne({ 'sessionKey': req.cookies['dm-auth'] }, { 'email': true }, function (err, doc) {
-        if (err) {
-            return res.status(500).send({ status: "failure", message: err.message });
-        }
+router.get('/user', async function (req, res, next) {
+    User.findOne({ 'sessionKey': req.cookies['dm-auth'] }, { 'password': false, 'sessionKey': false }, function (err, doc) {
+        if (err) { next(err) }
 
-        if (doc == null) {
-            return res.status(500).send({ status: "failure", message: "Invalid Credentials" });
+        if (!doc) {
+            return res.status(401).json({ status: "failure", message: "Invalid Credentials" });
         }
-        return res.status(200).send({ status: "success", message: doc });
+        return res.status(200).json({ message: doc });
     })
 });
 

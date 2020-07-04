@@ -6,7 +6,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "nodemon ./src/app.js",
+    "start": "PORT=8000 MDB_CXN=mongodb://192.168.99.100:27017/dunder-mifflin nodemon ./src/app.js",
     "reinit": "node ./src/reinit.js",
     "test": "mocha ./tests/"
   },

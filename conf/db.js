@@ -1,5 +1,5 @@
 module.exports = {
-    host: "127.0.0.1",
+    host: "localhost",
     port: 27017,
     name: "dunder-mifflin"
 }

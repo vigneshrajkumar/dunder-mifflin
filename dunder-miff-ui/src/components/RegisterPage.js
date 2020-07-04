@@ -52,7 +52,7 @@ function RegisterPage(props) {
 
                 <div className="login-box">
                     <form onSubmit={handleSumbit}>
-                        <div className="heading"> {props.sellerRegistration ? "Register Seller Account" : "Customer Seller Account"} </div>
+                        <div className="heading"> {props.sellerRegistration ? "Register Seller Account" : "Register Customer Account"} </div>
 
                         <div className="input-group">
                             <div className="label"> Email: </div>
