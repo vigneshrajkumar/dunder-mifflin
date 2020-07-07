@@ -42,7 +42,7 @@ function App() {
 
         <Route path="/404"> <E404Page /> </Route>
         <Route path="/500"> <E500Page /> </Route>
-        <Route path="/"><Redirect to={{ pathname: "/404" }} /> </Route>
+        {/* <Route path="/"><Redirect to={{ pathname: "/404" }} /> </Route> */}
         {/* <Route path="/"><HomePage/> </Route> */}
       </Switch>
     </BrowserRouter>

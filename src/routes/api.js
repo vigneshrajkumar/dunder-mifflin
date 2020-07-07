@@ -112,7 +112,7 @@ router.get("/categories/:cid/products", async function (req, res) {
 
 
 router.get("/categories", async function (req, res) {
-  Category.find({}).exec((err, cats) => {
+  Category.find({}, {}).exec((err, cats) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
     return res.status(200).send({ status: "success", message: cats });
   });
@@ -120,7 +120,7 @@ router.get("/categories", async function (req, res) {
 
 
 router.get("/categories/:cid", async function (req, res) {
-  Category.findOne({ id: req.params.cid }).exec((err, cat) => {
+  Category.findOne({ _id: req.params.cid }).exec((err, cat) => {
     if (err) res.status(500).send({ status: "failure", message: err.message });
     return res.status(200).send({ status: "success", message: cat });
   });

@@ -7,7 +7,7 @@ function GridItem(props) {
         <Link to={"/stores/"+ props.product.storeID +"/product/" + props.product._id}>
             <div className="grid-item">
                 <div className="image-box">
-                    <img src={props.product.product_image} alt="product-thumbnail" />
+                    <img src="https://source.unsplash.com/random/150x150" alt="product-thumbnail" />
                 </div>
                 <div className="description-box">
                     <div>

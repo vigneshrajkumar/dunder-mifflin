@@ -9,14 +9,14 @@ function Categories() {
             .then(res => setCategories(res.message))
             .catch(err => console.log(err))
     }, [])
+
     return (
         <div>
-            {categories === [] ? "loading.." :
-                categories.map(c =>
-                    <div className="category-title" key={c.id}>
-                        <Link to={"/categories/" + String(c.id) + "/products"}> {c.description} </Link>
-                    </div>
-                )}
+            {categories.map(c =>
+                <div className="category-title" key={c._id}>
+                    <Link to={"/categories/" + c._id + "/products"}> {c.content} </Link>
+                </div>
+            )}
         </div>
     )
 }

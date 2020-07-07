@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "PORT=8000 MDB_CXN=mongodb://192.168.99.100:27017/dunder-mifflin nodemon ./src/app.js",
-    "reinit": "node ./src/reinit.js",
+    "reinit": "MDB_CXN=mongodb://192.168.99.100:27017/dunder-mifflin node ./src/reinit.js",
     "test": "mocha ./tests/"
   },
   "nodemonConfig": {

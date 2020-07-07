@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 const categorySchema = mongoose.Schema({
-       categories: [{type: String, unique: true}]
+       _id: { type: String },
+       content: { type: String },
 })
 
 module.exports = mongoose.model("Category", categorySchema)
