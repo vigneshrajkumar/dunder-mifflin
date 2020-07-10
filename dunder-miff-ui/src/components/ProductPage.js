@@ -4,6 +4,7 @@ import logo from "./../img/dm-logo.jfif"
 import Review from "./Review"
 import SearchBar from "./SearchBar"
 import Categories from "./Categories"
+import useCartQuantity from "../hooks/useCartQuantity"
 
 function ProductPage() {
 
@@ -62,6 +63,8 @@ function ProductPage() {
                 product: product
             })
         })
+        let body = await res.json();
+        console.log(body)
         if (!res.ok){
             console.error(res)
         }

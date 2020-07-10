@@ -15,7 +15,7 @@ import ProductPage from "./components/ProductPage"
 import SearchPage from "./components/SearchPage"
 import StorePage from "./components/StorePage"
 import InventoryPage from "./components/InventoryPage"
-// import HomePage from "./components/HomePage"
+import HomePage from "./components/HomePage"
 import CartPage from "./components/CartPage"
 import OrdersPage from './components/OrdersPage'
 import E404Page from './components/E404Page'
@@ -43,7 +43,7 @@ function App() {
         <Route path="/404"> <E404Page /> </Route>
         <Route path="/500"> <E500Page /> </Route>
         {/* <Route path="/"><Redirect to={{ pathname: "/404" }} /> </Route> */}
-        {/* <Route path="/"><HomePage/> </Route> */}
+        <Route path="/"><HomePage/> </Route>
       </Switch>
     </BrowserRouter>
   );

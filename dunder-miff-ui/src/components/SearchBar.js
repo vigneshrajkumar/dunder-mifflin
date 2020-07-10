@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 
-import "../styles/searchBar.css";
+import "../styles/searchBar.css"
+import useCartQuantity from "../hooks/useCartQuantity"
 
-function SearchBar() {
-
+export default function SearchBar() {
     const [searchTerm, setSearchTerm] = useState("")
-    const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
+    const cartQty = useCartQuantity();
 
     let history = useHistory()
 
@@ -29,37 +29,19 @@ function SearchBar() {
                     setLoggedIn(false);
                 }
             })
-
     }
 
     useEffect(() => {
         fetch("/auth/user")
-            .then(res => {
-                if (res.ok){
-                    let json = res.json()
-                    console.log("authenticated")
+            .then(async res => {
+                if (res.ok) {
                     setLoggedIn(true)
-                    setUser(json.message)
-                }else{
+                } else {
                     console.log("not authenticated")
                 }
             })
     }, [])
 
-    if (!loggedIn) {
-        return (
-            <div className="search-bar">
-                <div className="search-input">
-                    <form onSubmit={handleSubmit}>
-                        <input type="input" placeholder="Search" onChange={handleChange}></input>
-                    </form>
-                </div>
-                <div className="links">
-                    <Link to="/user/login"> Login </Link>
-                </div>
-            </div>
-        )
-    }
     return (
         <div className="search-bar">
             <div className="search-input">
@@ -68,11 +50,11 @@ function SearchBar() {
                 </form>
             </div>
             <div className="links">
-                <Link to="/cart"> Cart </Link>
-                <button onClick={handleLogout}> Logout </button>
+                <Link to="/cart"> Cart : </Link> <span>{cartQty > 0 && cartQty}</span>
+                {loggedIn
+                    ? <button onClick={handleLogout}> Logout </button>
+                    : <Link to="/user/login"> Login </Link>}
             </div>
         </div>
     )
 }
-
-export default SearchBar

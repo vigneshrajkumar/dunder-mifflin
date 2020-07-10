@@ -13,11 +13,17 @@ router.get('/ping', function (req, res, next) {
   });
 });
 
+router.get("/users/:uid/cart", (req, res, next) => {
+  User.findOne({ 'sessionKey': req.cookies['dm-auth'] }, (err, user) => {
+    if (err) { next(err) }
+    res.json({ status: "success", message: user.cart })
+  })
+})
 
 router.put("/users/:uid/cart", (req, res, next) => {
-  User.update({'sessionKey': req.cookies['dm-auth']}, {$push:{'cart': req.body.product}}, (err) => {
-    if (err){ next(err)}
-    res.json({"message": "added to cart"})
+  User.findOneAndUpdate({ 'sessionKey': req.cookies['dm-auth'] }, { $push: { 'cart': req.body.product } }, (err, user) => {
+    if (err) { next(err) }
+    res.json({ status: "success", message: user })
   })
 })
 
